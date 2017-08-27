@@ -1,4 +1,4 @@
-# XMLTV
+# XMLTV [![Code Style](https://travis-ci.org/jaylinski/xmltv.svg?branch=master)](https://travis-ci.org/jaylinski/xmltv) [![Code Style](https://styleci.io/repos/101584271/shield)](https://styleci.io/repos/101584271)
 
 A library for generating XMLTV files out of different sources.
 
