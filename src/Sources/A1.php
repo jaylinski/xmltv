@@ -104,7 +104,7 @@ class A1 implements Source
         curl_setopt($ch, CURLOPT_USERAGENT, 'XMLTV Generator');
         $result = curl_exec($ch);
 
-        if(!curl_errno($ch) && $result) {
+        if (!curl_errno($ch) && $result) {
             return $result;
         } else {
             throw new \RuntimeException('cURL request failed.');
@@ -113,8 +113,7 @@ class A1 implements Source
 
     private function addChannels($data)
     {
-        foreach ($data as $channelInfo)
-        {
+        foreach ($data as $channelInfo) {
             $channel = new Channel($channelInfo[0]);
             $channel->icon = self::SOURCE_CHANNEL_LOGO.$channelInfo[0].'.png';
             $channel->addDisplayName(new DisplayName($channelInfo[2]));
