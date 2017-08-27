@@ -4,7 +4,7 @@ namespace XmlTv\Tv;
 
 class Programme
 {
-    const DATE_FORMAT = 'YmdHis';
+    const DATE_FORMAT = 'YmdHis O';
 
     /**
      * @var string
