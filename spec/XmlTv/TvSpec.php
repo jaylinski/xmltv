@@ -4,7 +4,6 @@ namespace spec\XmlTv;
 
 use XmlTv\Tv;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class TvSpec extends ObjectBehavior
 {

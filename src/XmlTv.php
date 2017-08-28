@@ -10,16 +10,12 @@ class XmlTv
      * Generates an XMLTV file.
      *
      * @param Tv $tv
-     * @param string $output  The file path to write the XML to.
+     * @return string
      */
-    public static function generate(Tv $tv, string $output)
+    public static function generate(Tv $tv)
     {
-        if (!is_writable(pathinfo($output, PATHINFO_DIRNAME))) {
-            throw new \RuntimeException('Folder not writeable.');
-        }
-
         $xml = new XMLWriter();
-        $xml->openURI($output);
+        $xml->openMemory();
         $xml->setIndent(true);
         $xml->startDocument();
 
@@ -55,5 +51,7 @@ class XmlTv
 
         $xml->endElement();
         $xml->endDocument();
+
+        return $xml->outputMemory();
     }
 }

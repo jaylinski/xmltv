@@ -18,7 +18,7 @@ use XmlTv\XmlTv;
 
 require __DIR__.'/vendor/autoload.php';
 
-XmlTv::generate((new Foo())->get(), $output = __DIR__.'/epg.xml');
+$xml = XmlTv::generate((new Foo())->get());
 ```
 
 ## Sources
