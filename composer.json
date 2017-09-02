@@ -1,6 +1,6 @@
 {
     "name": "jaylinski/xmltv",
-    "description": "Package for creation of XMLTV files.",
+    "description": "A library for generating XMLTV files.",
     "keywords": ["XMLTV"],
     "type": "library",
     "license": "MIT",
@@ -12,8 +12,8 @@
     ],
     "require": {
         "php": ">=7.0",
-        "psr/simple-cache": "^1.0",
-        "symfony/cache": "^3.3"
+        "ext-dom": "*",
+        "ext-xmlwriter": "*"
     },
     "require-dev": {
         "phpspec/phpspec": "^4.0"
@@ -24,7 +24,8 @@
         }
     },
     "scripts": {
-        "test": "php vendor/bin/phpspec run",
+        "test": "php vendor/bin/phpspec run --ansi",
+        "coverage": "echo add leanphp/phpspec-code-coverage!",
         "lint": "echo add php-cs-fixer!"
     }
 }

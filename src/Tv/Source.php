@@ -1,6 +1,6 @@
 <?php
 
-namespace XmlTv\Sources;
+namespace XmlTv\Tv;
 
 use XmlTv\Tv;
 

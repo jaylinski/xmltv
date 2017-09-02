@@ -2,6 +2,9 @@
 
 namespace XmlTv\Tv;
 
+use XmlTv\Tv\Channel\DisplayName;
+use XmlTv\Tv\Channel\Icon;
+
 class Channel
 {
     /**
@@ -10,14 +13,19 @@ class Channel
     public $id;
 
     /**
-     * @var DisplayName[]
-     */
-    private $displayNames = [];
-
-    /**
-     * @var
+     * @var Icon
      */
     public $icon;
+
+    /**
+     * @var string
+     */
+    public $url;
+
+    /**
+     * @var DisplayName[]
+     */
+    private $displayName = [];
 
     /**
      * Channel constructor.
@@ -36,16 +44,16 @@ class Channel
      */
     public function addDisplayName(DisplayName $displayName)
     {
-        array_push($this->displayNames, $displayName);
+        array_push($this->displayName, $displayName);
     }
 
     /**
      * Get all display names.
      *
-     * @return array
+     * @return DisplayName[]
      */
-    public function getDisplayNames()
+    public function getDisplayNames(): array
     {
-        return $this->displayNames;
+        return $this->displayName;
     }
 }

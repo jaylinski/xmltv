@@ -1,6 +1,10 @@
-# XMLTV [![Code Style](https://travis-ci.org/jaylinski/xmltv.svg?branch=master)](https://travis-ci.org/jaylinski/xmltv) [![Code Style](https://styleci.io/repos/101584271/shield)](https://styleci.io/repos/101584271)
+# XMLTV
 
-A library for generating XMLTV files out of different sources.
+[![Latest Stable Version](https://poser.pugx.org/jaylinski/xmltv/v/stable)](https://packagist.org/packages/jaylinski/xmltv)
+[![Build](https://travis-ci.org/jaylinski/xmltv.svg?branch=master)](https://travis-ci.org/jaylinski/xmltv)
+[![Code Style](https://styleci.io/repos/101584271/shield)](https://styleci.io/repos/101584271)
+
+A library for generating XMLTV files.
 
 ## Installation
 
@@ -18,14 +22,12 @@ use XmlTv\XmlTv;
 
 require __DIR__.'/vendor/autoload.php';
 
-$xml = XmlTv::generate((new Foo())->get());
+$xml = XmlTv::generate(new Tv(), $validate = true);
 ```
 
 ## Sources
 
-* A1
-
-You can write your own source by implementing the `XmlTv\Sources\Source` interface.
+You can write your own source by implementing the `XmlTv\Tv\Source` interface.
 
 ## Copyright and license
 

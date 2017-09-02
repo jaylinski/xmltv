@@ -1,0 +1,121 @@
+<!-- DTD for TV listings http://xmltv.cvs.sourceforge.net/viewvc/xmltv/xmltv/xmltv.dtd -->
+<!ELEMENT tv (channel*, programme*)>
+<!ATTLIST tv date   CDATA #IMPLIED
+             source-info-url     CDATA #IMPLIED
+             source-info-name    CDATA #IMPLIED
+             source-data-url     CDATA #IMPLIED
+             generator-info-name CDATA #IMPLIED
+             generator-info-url  CDATA #IMPLIED >
+
+<!ELEMENT channel (display-name+, icon*, url*) >
+<!ATTLIST channel id CDATA #REQUIRED >
+
+<!ELEMENT display-name (#PCDATA)>
+<!ATTLIST display-name lang CDATA #IMPLIED>
+
+<!ELEMENT url (#PCDATA)>
+
+<!ELEMENT programme (title+, sub-title*, desc*, credits?, date?,
+                     category*, keyword*, language?, orig-language?,
+                     length?, icon*, url*, country*, episode-num*,
+                     video?, audio?, previously-shown?, premiere?,
+                     last-chance?, new?, subtitles*, rating*,
+                     star-rating*, review* )>
+<!ATTLIST programme start     CDATA #REQUIRED
+                    stop      CDATA #IMPLIED
+                    pdc-start CDATA #IMPLIED
+                    vps-start CDATA #IMPLIED
+                    showview  CDATA #IMPLIED
+                    videoplus CDATA #IMPLIED
+                    channel   CDATA #REQUIRED
+                    clumpidx  CDATA "0/1" >
+
+<!ELEMENT title (#PCDATA)>
+<!ATTLIST title lang CDATA #IMPLIED>
+
+<!ELEMENT sub-title (#PCDATA)>
+<!ATTLIST sub-title lang CDATA #IMPLIED>
+
+<!ELEMENT desc (#PCDATA)>
+<!ATTLIST desc lang CDATA #IMPLIED>
+
+<!ELEMENT credits (director*, actor*, writer*, adapter*, producer*,
+                   composer*, editor*, presenter*, commentator*, 
+                   guest* )>
+<!ELEMENT director    (#PCDATA)>
+<!ELEMENT actor       (#PCDATA)>
+<!ATTLIST actor role  CDATA #IMPLIED>
+<!ELEMENT writer      (#PCDATA)>
+<!ELEMENT adapter     (#PCDATA)>
+<!ELEMENT producer    (#PCDATA)>
+<!ELEMENT composer    (#PCDATA)>
+<!ELEMENT editor      (#PCDATA)>
+<!ELEMENT presenter   (#PCDATA)>
+<!ELEMENT commentator (#PCDATA)>
+<!ELEMENT guest       (#PCDATA)>
+
+<!ELEMENT date (#PCDATA)>
+
+<!ELEMENT category (#PCDATA)>
+<!ATTLIST category lang CDATA #IMPLIED>
+
+<!ELEMENT keyword (#PCDATA)>
+<!ATTLIST keyword lang CDATA #IMPLIED>
+
+<!ELEMENT language (#PCDATA)>
+<!ATTLIST language lang CDATA #IMPLIED>
+
+<!ELEMENT orig-language (#PCDATA)>
+<!ATTLIST orig-language lang CDATA #IMPLIED>
+
+<!ELEMENT length (#PCDATA)>
+<!ATTLIST length units (seconds | minutes | hours) #REQUIRED>
+
+<!ELEMENT icon EMPTY>
+<!ATTLIST icon src         CDATA #REQUIRED
+               width       CDATA #IMPLIED
+               height      CDATA #IMPLIED> 
+
+<!ELEMENT value (#PCDATA)>
+
+<!ELEMENT country (#PCDATA)>
+<!ATTLIST country lang CDATA #IMPLIED>
+
+<!ELEMENT episode-num (#PCDATA)>
+<!ATTLIST episode-num system CDATA "onscreen">
+
+<!ELEMENT video (present?, colour?, aspect?, quality?)>
+<!ELEMENT present (#PCDATA)>
+<!ELEMENT colour (#PCDATA)>
+<!ELEMENT aspect (#PCDATA)>
+<!ELEMENT quality (#PCDATA)>
+
+<!ELEMENT audio (present?, stereo?)>
+<!ELEMENT stereo (#PCDATA)>
+
+<!ELEMENT previously-shown EMPTY>
+<!ATTLIST previously-shown start   CDATA #IMPLIED
+                           channel CDATA #IMPLIED >
+
+<!ELEMENT premiere (#PCDATA)>
+<!ATTLIST premiere lang CDATA #IMPLIED>
+
+<!ELEMENT last-chance (#PCDATA)>
+<!ATTLIST last-chance lang CDATA #IMPLIED>
+
+<!ELEMENT new EMPTY>
+
+<!ELEMENT subtitles (language?)>
+<!ATTLIST subtitles type (teletext | onscreen | deaf-signed) #IMPLIED>
+
+<!ELEMENT rating (value, icon*)>
+<!ATTLIST rating system CDATA #IMPLIED>
+
+<!ELEMENT star-rating (value, icon*)>
+<!ATTLIST star-rating system CDATA #IMPLIED>
+
+<!ELEMENT review (#PCDATA)>
+<!ATTLIST review type     (text | url) #REQUIRED
+                 source   CDATA        #IMPLIED
+                 reviewer CDATA        #IMPLIED
+                 lang     CDATA        #IMPLIED>

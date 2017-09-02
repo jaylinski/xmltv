@@ -21,25 +21,32 @@ class Tv
     public $sourceInfoName;
 
     /**
+     * @var string
+     */
+    public $sourceDataUrl;
+
+    /**
      * @var Channel[]
      */
-    private $channels = [];
+    private $channel = [];
 
     /**
      * @var Programme[]
      */
-    private $programmes = [];
+    private $programme = [];
 
     /**
      * Tv constructor.
      *
      * @param string $sourceInfoUrl
      * @param string $sourceInfoName
+     * @param string $sourceDataUrl
      */
-    public function __construct(string $sourceInfoUrl, string $sourceInfoName)
+    public function __construct(string $sourceInfoUrl = '', string $sourceInfoName = '', string $sourceDataUrl = '')
     {
         $this->sourceInfoUrl = $sourceInfoUrl;
         $this->sourceInfoName = $sourceInfoName;
+        $this->sourceDataUrl = $sourceDataUrl;
     }
 
     /**
@@ -47,7 +54,7 @@ class Tv
      */
     public function addChannel(Channel $channel)
     {
-        array_push($this->channels, $channel);
+        array_push($this->channel, $channel);
     }
 
     /**
@@ -55,7 +62,7 @@ class Tv
      */
     public function getChannels(): array
     {
-        return $this->channels;
+        return $this->channel;
     }
 
     /**
@@ -63,7 +70,7 @@ class Tv
      */
     public function addProgramme(Programme $programme)
     {
-        array_push($this->programmes, $programme);
+        array_push($this->programme, $programme);
     }
 
     /**
@@ -71,6 +78,6 @@ class Tv
      */
     public function getProgrammes(): array
     {
-        return $this->programmes;
+        return $this->programme;
     }
 }

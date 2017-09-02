@@ -13,12 +13,34 @@ class XmlTvSpec extends ObjectBehavior
         $this->shouldHaveType(XmlTv::class);
     }
 
+    function it_generates_an_xml_file_from_an_empty_tv_object(Tv $tv)
+    {
+        $xml = file_get_contents(__DIR__.'/../epg-empty.xml');
+
+        $tv->getChannels()->shouldBeCalled()->willReturn([]);
+        $tv->getProgrammes()->shouldBeCalled()->willReturn([]);
+
+        $this->generate($tv, false)->shouldReturn($xml);
+    }
+
     function it_generates_an_xml_file(Tv $tv)
     {
-        $generatedFile = file_get_contents(__DIR__.'/../epg.xml');
+        $xml = file_get_contents(__DIR__.'/../epg.xml');
 
-        $tv->getChannels()->willReturn([new Tv\Channel('test')]);
-        $tv->getProgrammes()->willReturn([new Tv\Programme('1', '2', 'test')]);
-        $this->generate($tv)->shouldReturn($generatedFile);
+        $channel = new Tv\Channel('test');
+        $channel->icon = new Tv\Channel\Icon('http://foo.bar/img.png', 200, 200);
+        $channel->addDisplayName(new Tv\Channel\DisplayName('test', 'en'));
+        $channel->addDisplayName(new Tv\Channel\DisplayName('test', 'de'));
+
+        $programme = new Tv\Programme('1', '2', 'test');
+        $programme->date = '1999';
+        $programme->addTitle(new Tv\Programme\Title('foo'));
+        $programme->addSubTitle(new Tv\Programme\SubTitle('bar'));
+
+        $tv->getChannels()->shouldBeCalled()->willReturn([$channel]);
+        $tv->getProgrammes()->shouldBeCalled()->willReturn([$programme]);
+
+        $tmp = $this->generate($tv, false);
+        $this->generate($tv, false)->shouldReturn($xml);
     }
 }
