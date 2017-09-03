@@ -66,21 +66,21 @@ class XmlTv
 
             foreach ($programme->getTitles() as $title) {
                 $xmlWriter->startElement('title');
-                $xmlWriter->writeAttribute('lang',  $title->lang);
+                $xmlWriter->writeAttribute('lang', $title->lang);
                 $xmlWriter->text($title->value);
                 $xmlWriter->endElement();
             }
 
             foreach ($programme->getSubTitles() as $subTitle) {
                 $xmlWriter->startElement('sub-title');
-                $xmlWriter->writeAttribute('lang',  $subTitle->lang);
+                $xmlWriter->writeAttribute('lang', $subTitle->lang);
                 $xmlWriter->text($subTitle->value);
                 $xmlWriter->endElement();
             }
 
             foreach ($programme->getDescriptions() as $description) {
                 $xmlWriter->startElement('desc');
-                $xmlWriter->writeAttribute('lang',  $description->lang);
+                $xmlWriter->writeAttribute('lang', $description->lang);
                 $xmlWriter->text($description->value);
                 $xmlWriter->endElement();
             }
