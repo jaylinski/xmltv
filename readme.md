@@ -17,7 +17,7 @@ Install the latest version with
 ```php
 <?php
 
-use XmlTv\Sources\Foo;
+use XmlTv\Tv;
 use XmlTv\XmlTv;
 
 require __DIR__.'/vendor/autoload.php';
