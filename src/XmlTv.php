@@ -24,10 +24,10 @@ class XmlTv
     {
         libxml_use_internal_errors(true);
 
-        $domDocument = $validate ? XmlTv::getDocumentWithDtd() : new DOMDocument();
+        $domDocument = $validate ? self::getDocumentWithDtd() : new DOMDocument();
         $domDocument->formatOutput = true;
 
-        self::buildXmlDocument($domDocument, $tv->xmlSerialize());
+        self::buildDocument($domDocument, $tv->xmlSerialize());
 
         if (!$validate || $domDocument->validate()) {
             return $domDocument->saveXML();
@@ -42,7 +42,7 @@ class XmlTv
      * @param DOMNode     $domNode
      * @param XmlElement  $xmlElement
      */
-    private static function buildXmlDocument(DOMNode &$domNode, XmlElement $xmlElement)
+    private static function buildDocument(DOMNode &$domNode, XmlElement $xmlElement)
     {
         if (is_null($xmlElement->getValue()) && !$xmlElement->hasChildren() && !$xmlElement->hasAttributes()) {
             return;
@@ -57,7 +57,7 @@ class XmlTv
 
         if ($xmlElement->hasChildren()) {
             foreach ($xmlElement->getChildren() as $child) {
-                self::buildXmlDocument($node, $child);
+                self::buildDocument($node, $child);
             }
         } else {
             if (!is_null($xmlElement->getValue())) {
