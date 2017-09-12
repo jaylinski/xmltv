@@ -8,13 +8,15 @@ use XmlTv\Tv\Programme\Desc;
 use XmlTv\Tv\Programme\Keyword;
 use XmlTv\Tv\Programme\SubTitle;
 use XmlTv\Tv\Programme\Title;
+use XmlTv\XmlElement;
+use XmlTv\XmlSerializable;
 
 /*
  * Todo: icon*, url*, country*, episode-num*, video?, audio?, previously-shown?, premiere?, last-chance?, new?,
  *       subtitles*, rating*, star-rating*, review*
  */
 
-class Programme
+class Programme implements XmlSerializable
 {
     const DATE_FORMAT = 'YmdHis O';
 
@@ -215,5 +217,20 @@ class Programme
     public function getKeywords(): array
     {
         return $this->keyword;
+    }
+
+    public function xmlSerialize(): XmlElement
+    {
+        return (new XmlElement('programme'))
+            ->withAttribute('start', $this->start)
+            ->withAttribute('stop', $this->stop)
+            ->withAttribute('channel', $this->channel)
+            ->withChildren($this->getTitles())
+            ->withChildren($this->getSubTitles())
+            ->withChildren($this->getDescriptions())
+            ->withChild(new XmlElement('date', $this->date))
+            ->withChildren($this->getKeywords())
+            ->withChild(new XmlElement('language', $this->language))
+            ->withChild(new XmlElement('orig-language', $this->origLanguage));
     }
 }

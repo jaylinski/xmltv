@@ -2,7 +2,10 @@
 
 namespace XmlTv\Tv\Channel;
 
-class Icon
+use XmlTv\XmlElement;
+use XmlTv\XmlSerializable;
+
+class Icon implements XmlSerializable
 {
     /**
      * @var string
@@ -24,5 +27,13 @@ class Icon
         $this->src = $src;
         $this->width = $width;
         $this->height = $height;
+    }
+
+    public function xmlSerialize(): XmlElement
+    {
+        return (new XmlElement('icon'))
+            ->withAttribute('src', $this->src)
+            ->withAttribute('width', $this->width)
+            ->withAttribute('height', $this->height);
     }
 }

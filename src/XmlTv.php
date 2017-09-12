@@ -3,6 +3,8 @@
 namespace XmlTv;
 
 use DOMDocument;
+use DOMElement;
+use DOMNode;
 use XmlTv\Exceptions\ValidationException;
 use XMLWriter;
 
@@ -13,132 +15,77 @@ class XmlTv
     /**
      * Generates an XMLTV file.
      *
-     * @param Tv $tv
-     * @param bool $validate
+     * @param Tv   $tv        The Tv object.
+     * @param bool $validate  Include the XMLTV DTD (inline) an validate against it.
      * @return string
      * @throws ValidationException
      */
     public static function generate(Tv $tv, bool $validate = true)
     {
-        $xmlWriter = new XMLWriter();
-        $xmlWriter->openMemory();
-        $xmlWriter->setIndent(true);
-        $xmlWriter->startDocument();
+        libxml_use_internal_errors(true);
 
-        if ($validate) {
-            $xmlWriter->writeDTD('tv', null, null, file_get_contents(XmlTv::DTD));
-        }
+        $domDocument = $validate ? XmlTv::getDocumentWithDtd() : new DOMDocument();
+        $domDocument->formatOutput = true;
 
-        $xmlWriter->startElement('tv');
-        $xmlWriter->writeAttribute('source-info-name', $tv->sourceInfoName);
-        $xmlWriter->writeAttribute('source-info-url', $tv->sourceInfoUrl);
-        $xmlWriter->writeAttribute('source-data-url', $tv->sourceDataUrl);
-        $xmlWriter->writeAttribute('generator-info-name', Tv::GENERATOR_INFO_NAME);
-        $xmlWriter->writeAttribute('generator-info-url', Tv::GENERATOR_INFO_URL);
+        self::buildXmlDocument($domDocument, $tv->xmlSerialize());
 
-        foreach ($tv->getChannels() as $channel) {
-            $xmlWriter->startElement('channel');
-            $xmlWriter->writeAttribute('id', $channel->id);
-
-            foreach ($channel->getDisplayNames() as $displayName) {
-                $xmlWriter->startElement('display-name');
-                $xmlWriter->writeAttribute('lang', $displayName->lang);
-                $xmlWriter->text($displayName->value);
-                $xmlWriter->endElement();
-            }
-
-            if (!is_null($channel->icon)) {
-                $xmlWriter->startElement('icon');
-                $xmlWriter->writeAttribute('src', $channel->icon->src);
-                $xmlWriter->writeAttribute('width', $channel->icon->width);
-                $xmlWriter->writeAttribute('height', $channel->icon->height);
-                $xmlWriter->endElement();
-            }
-
-            $xmlWriter->endElement();
-        }
-
-        foreach ($tv->getProgrammes() as $programme) {
-            $xmlWriter->startElement('programme');
-            $xmlWriter->writeAttribute('start', $programme->start);
-            $xmlWriter->writeAttribute('stop', $programme->stop);
-            $xmlWriter->writeAttribute('channel', $programme->channel);
-
-            foreach ($programme->getTitles() as $title) {
-                $xmlWriter->startElement('title');
-                $xmlWriter->writeAttribute('lang', $title->lang);
-                $xmlWriter->text($title->value);
-                $xmlWriter->endElement();
-            }
-
-            foreach ($programme->getSubTitles() as $subTitle) {
-                $xmlWriter->startElement('sub-title');
-                $xmlWriter->writeAttribute('lang', $subTitle->lang);
-                $xmlWriter->text($subTitle->value);
-                $xmlWriter->endElement();
-            }
-
-            foreach ($programme->getDescriptions() as $description) {
-                $xmlWriter->startElement('desc');
-                $xmlWriter->writeAttribute('lang', $description->lang);
-                $xmlWriter->text($description->value);
-                $xmlWriter->endElement();
-            }
-
-            if (!is_null($programme->date)) {
-                $xmlWriter->writeElement('date', $programme->date);
-            }
-
-            foreach ($programme->getCategories() as $category) {
-                $xmlWriter->startElement('category');
-                $xmlWriter->writeAttribute('lang', $category->lang);
-                $xmlWriter->text($category->value);
-                $xmlWriter->endElement();
-            }
-
-            foreach ($programme->getKeywords() as $keyword) {
-                $xmlWriter->startElement('keyword');
-                $xmlWriter->writeAttribute('lang', $keyword->lang);
-                $xmlWriter->text($keyword->value);
-                $xmlWriter->endElement();
-            }
-
-            if (!is_null($programme->language)) {
-                $xmlWriter->writeElement('language', $programme->language);
-            }
-
-            if (!is_null($programme->origLanguage)) {
-                $xmlWriter->writeElement('orig-language', $programme->origLanguage);
-            }
-
-            $xmlWriter->endElement();
-        }
-
-        $xmlWriter->endElement();
-        $xmlWriter->endDocument();
-
-        $xml = $xmlWriter->outputMemory();
-
-        if (XmlTV::isValid($xml) || !$validate) {
-            return $xml;
+        if (!$validate || $domDocument->validate()) {
+            return $domDocument->saveXML();
         } else {
             throw new ValidationException('DTD validation failed: '.libxml_get_last_error()->message);
         }
     }
 
     /**
-     * Validates an XMLTV string.
+     * Render the serialized XML (recursively).
      *
-     * @param string $xml
-     * @return bool
+     * @param DOMNode     $domNode
+     * @param XmlElement  $xmlElement
      */
-    public static function isValid(string $xml)
+    private static function buildXmlDocument(DOMNode &$domNode, XmlElement $xmlElement)
     {
-        libxml_use_internal_errors(true);
+        if (is_null($xmlElement->getValue()) && !$xmlElement->hasChildren() && !$xmlElement->hasAttributes()) {
+            return;
+        }
 
-        $dom = new DOMDocument();
-        $dom->loadXML($xml);
+        $element = new DOMElement($xmlElement->getName());
+        $node = $domNode->appendChild($element);
 
-        return $dom->validate();
+        foreach ($xmlElement->getAttributes() as $attribute => $value) {
+            $node->setAttribute($attribute, $value);
+        }
+
+        if ($xmlElement->hasChildren()) {
+            foreach ($xmlElement->getChildren() as $child) {
+                self::buildXmlDocument($node, $child);
+            }
+        } else {
+            if (!is_null($xmlElement->getValue())) {
+                $node->textContent = $xmlElement->getValue();
+            }
+        }
+    }
+
+    /**
+     * Returns a DOMDocument with an internal XMLTV DTD subset.
+     *
+     * This function uses the XMLWriter extension because it can write internal subsets.
+     *
+     * @return DOMDocument
+     */
+    private static function getDocumentWithDtd(): DOMDocument
+    {
+        $xmlWriter = new XMLWriter();
+        $xmlWriter->openMemory();
+        $xmlWriter->startDocument();
+        $xmlWriter->writeDTD('tv', null, null, file_get_contents(XmlTv::DTD));
+        $xmlWriter->writeElement('x'); // DOMDocument::loadXML() will only load the DTD if a root element is present.
+        $xmlWriter->endDocument();
+
+        $domDocument = new DOMDocument();
+        $domDocument->loadXML($xmlWriter->outputMemory());
+        $domDocument->removeChild($domDocument->documentElement); // Remove the temporary root element.
+
+        return $domDocument;
     }
 }

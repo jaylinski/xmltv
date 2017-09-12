@@ -6,4 +6,5 @@ use XmlTv\Tv\LocalizedValue;
 
 class DisplayName extends LocalizedValue
 {
+    public $name = 'display-name';
 }

@@ -4,8 +4,10 @@ namespace XmlTv\Tv;
 
 use XmlTv\Tv\Channel\DisplayName;
 use XmlTv\Tv\Channel\Icon;
+use XmlTv\XmlElement;
+use XmlTv\XmlSerializable;
 
-class Channel
+class Channel implements XmlSerializable
 {
     /**
      * @var string
@@ -55,5 +57,13 @@ class Channel
     public function getDisplayNames(): array
     {
         return $this->displayName;
+    }
+
+    public function xmlSerialize(): XmlElement
+    {
+        return (new XmlElement('channel'))
+            ->withAttribute('id', $this->id)
+            ->withChildren($this->getDisplayNames())
+            ->withChild($this->icon);
     }
 }

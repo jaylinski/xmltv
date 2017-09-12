@@ -13,19 +13,18 @@ class XmlTvSpec extends ObjectBehavior
         $this->shouldHaveType(XmlTv::class);
     }
 
-    function it_generates_an_xml_file_from_an_empty_tv_object(Tv $tv)
+    function it_generates_an_xml_file_from_an_empty_tv_object()
     {
         $xml = file_get_contents(__DIR__.'/../epg-empty.xml');
 
-        $tv->getChannels()->shouldBeCalled()->willReturn([]);
-        $tv->getProgrammes()->shouldBeCalled()->willReturn([]);
-
-        $this->generate($tv, false)->shouldReturn($xml);
+        $this->generate(new Tv(), false)->shouldReturn($xml);
     }
 
-    function it_generates_an_xml_file(Tv $tv)
+    function it_generates_an_xml_file()
     {
         $xml = file_get_contents(__DIR__.'/../epg.xml');
+
+        $tv = new Tv();
 
         $channel = new Tv\Channel('test');
         $channel->icon = new Tv\Channel\Icon('http://foo.bar/img.png', 200, 200);
@@ -37,10 +36,9 @@ class XmlTvSpec extends ObjectBehavior
         $programme->addTitle(new Tv\Programme\Title('foo'));
         $programme->addSubTitle(new Tv\Programme\SubTitle('bar'));
 
-        $tv->getChannels()->shouldBeCalled()->willReturn([$channel]);
-        $tv->getProgrammes()->shouldBeCalled()->willReturn([$programme]);
+        $tv->addChannel($channel);
+        $tv->addProgramme($programme);
 
-        $tmp = $this->generate($tv, false);
         $this->generate($tv, false)->shouldReturn($xml);
     }
 }

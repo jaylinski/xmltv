@@ -6,4 +6,5 @@ use XmlTv\Tv\LocalizedValue;
 
 class Keyword extends LocalizedValue
 {
+    public $name = 'keyword';
 }

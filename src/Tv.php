@@ -5,7 +5,7 @@ namespace XmlTv;
 use XmlTv\Tv\Channel;
 use XmlTv\Tv\Programme;
 
-class Tv
+class Tv implements XmlSerializable
 {
     const GENERATOR_INFO_NAME = 'jaylinski/xmltv';
     const GENERATOR_INFO_URL = 'https://github.com/jaylinski/xmltv';
@@ -79,5 +79,17 @@ class Tv
     public function getProgrammes(): array
     {
         return $this->programme;
+    }
+
+    public function xmlSerialize(): XmlElement
+    {
+        return (new XmlElement('tv'))
+            ->withAttribute('source-info-name', $this->sourceInfoName)
+            ->withAttribute('source-info-url', $this->sourceInfoUrl)
+            ->withAttribute('source-data-url', $this->sourceDataUrl)
+            ->withAttribute('generator-info-name', Tv::GENERATOR_INFO_NAME)
+            ->withAttribute('generator-info-url', Tv::GENERATOR_INFO_URL)
+            ->withChildren($this->getChannels())
+            ->withChildren($this->getProgrammes());
     }
 }

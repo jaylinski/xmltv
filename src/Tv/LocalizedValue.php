@@ -2,8 +2,16 @@
 
 namespace XmlTv\Tv;
 
-abstract class LocalizedValue
+use XmlTv\XmlElement;
+use XmlTv\XmlSerializable;
+
+abstract class LocalizedValue implements XmlSerializable
 {
+    /**
+     * @var string
+     */
+    public $name;
+
     /**
      * @var string
      */
@@ -18,5 +26,11 @@ abstract class LocalizedValue
     {
         $this->value = $value;
         $this->lang = $lang;
+    }
+
+    public function xmlSerialize(): XmlElement
+    {
+        return (new XmlElement($this->name, $this->value))
+            ->withAttribute('lang', $this->lang);
     }
 }
