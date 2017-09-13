@@ -106,12 +106,29 @@ class XmlElement implements XmlSerializable
     /**
      * Add child.
      *
-     * @param XmlSerializable $child
+     * @param XmlSerializable|null $child
      * @return $this
      */
-    public function withChild(XmlSerializable $child)
+    public function withChild($child)
     {
-        array_push($this->children, $child->xmlSerialize());
+        if ($child instanceof XmlSerializable) {
+            array_push($this->children, $child->xmlSerialize());
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add optional child.
+     *
+     * @param XmlSerializable|null $child
+     * @return $this
+     */
+    public function withOptionalChild($child)
+    {
+        if ($child instanceof XmlSerializable) {
+            array_push($this->children, $child->xmlSerialize());
+        }
 
         return $this;
     }

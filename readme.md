@@ -22,7 +22,18 @@ use XmlTv\XmlTv;
 
 require __DIR__.'/vendor/autoload.php';
 
-$xml = XmlTv::generate(new Tv(), $validate = true);
+$tv = new Tv();
+
+$channel = new Tv\Channel('channel1');
+$channel->addDisplayName(new Tv\Channel\DisplayName('Channel 1', 'en'));
+
+$programme = new Tv\Programme('20170914190000 +0200', '20170914200000 +0200', 'channel1');
+$programme->addTitle(new Tv\Programme\Title('CNN News', 'en'));
+
+$tv->addChannel($channel);
+$tv->addProgramme($programme);
+
+$xml = XmlTv::generate($tv, $validate = true);
 ```
 
 ## Sources
