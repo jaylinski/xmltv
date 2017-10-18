@@ -16,7 +16,9 @@
         "ext-xmlwriter": "*"
     },
     "require-dev": {
-        "phpspec/phpspec": "^4.0"
+        "friendsofphp/php-cs-fixer": "^2.7",
+        "leanphp/phpspec-code-coverage": "^4.0",
+        "phpspec/phpspec": "^4.1"
     },
     "autoload": {
         "psr-4": {
@@ -25,7 +27,6 @@
     },
     "scripts": {
         "test": "php vendor/bin/phpspec run --ansi",
-        "coverage": "echo add leanphp/phpspec-code-coverage!",
-        "lint": "echo add php-cs-fixer!"
+        "lint": "php vendor/bin/php-cs-fixer fix src --rules=@PSR2"
     }
 }
