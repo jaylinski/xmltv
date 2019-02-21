@@ -229,6 +229,7 @@ class Programme implements XmlSerializable
             ->withChildren($this->getSubTitles())
             ->withChildren($this->getDescriptions())
             ->withChild(new XmlElement('date', $this->date))
+            ->withChildren($this->getCategories())
             ->withChildren($this->getKeywords())
             ->withChild(new XmlElement('language', $this->language))
             ->withChild(new XmlElement('orig-language', $this->origLanguage));
