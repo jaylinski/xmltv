@@ -11,15 +11,21 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "ext-dom": "*",
         "ext-xmlwriter": "*"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.7",
-        "leanphp/phpspec-code-coverage": "^4.0",
-        "phpspec/phpspec": "^4.1"
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "leanphp/phpspec-code-coverage": "dev-master",
+        "phpspec/phpspec": "^5.1"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jaylinski/phpspec-code-coverage"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "XmlTv\\": "src/"
@@ -28,5 +34,8 @@
     "scripts": {
         "test": "php vendor/bin/phpspec run --ansi",
         "lint": "php vendor/bin/php-cs-fixer fix src --rules=@PSR2"
+    },
+    "config": {
+        "sort-packages": true
     }
 }
