@@ -30,6 +30,8 @@ $channel->addDisplayName(new Tv\Channel\DisplayName('Channel 1', 'en'));
 
 $programme = new Tv\Programme('20170914190000 +0200', '20170914200000 +0200', 'channel1');
 $programme->addTitle(new Tv\Programme\Title('CNN News', 'en'));
+$programme->addDescription(new Tv\Programme\Desc('World news', 'en'));
+$programme->addCategory(new Tv\Programme\Category('news', 'en'));
 
 $tv->addChannel($channel);
 $tv->addProgramme($programme);

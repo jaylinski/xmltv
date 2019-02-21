@@ -3,6 +3,7 @@
 namespace spec\XmlTv;
 
 use XmlTv\Tv;
+use XmlTv\XmlElement;
 use XmlTv\XmlTv;
 use PhpSpec\ObjectBehavior;
 
@@ -33,12 +34,29 @@ class XmlTvSpec extends ObjectBehavior
 
         $programme = new Tv\Programme('1', '2', 'test');
         $programme->date = '1999';
-        $programme->addTitle(new Tv\Programme\Title('foo'));
-        $programme->addSubTitle(new Tv\Programme\SubTitle('bar'));
+        $programme->addTitle(new Tv\Programme\Title('title'));
+        $programme->addSubTitle(new Tv\Programme\SubTitle('subtitle'));
+        $programme->addDescription(new Tv\Programme\Desc('desc'));
+        $programme->addCategory(new Tv\Programme\Category('category'));
+        $programme->addKeyword(new Tv\Programme\Keyword('keyword'));
 
         $tv->addChannel($channel);
         $tv->addProgramme($programme);
 
         $this->generate($tv, false)->shouldReturn($xml);
+    }
+
+    function it_throws_if_an_the_generated_xml_does_not_validate()
+    {
+        $this->shouldThrow('XmlTv\Exceptions\ValidationException')->duringGenerate(new InvalidTv(), true);
+    }
+}
+
+class InvalidTv extends Tv
+{
+    public function xmlSerialize(): XmlElement
+    {
+        return (new XmlElement('tv'))
+            ->withAttribute('invalid', 'foo');
     }
 }

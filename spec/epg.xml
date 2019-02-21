@@ -6,8 +6,10 @@
     <icon src="http://foo.bar/img.png" width="200" height="200"/>
   </channel>
   <programme start="1" stop="2" channel="test">
-    <title lang="">foo</title>
-    <sub-title lang="">bar</sub-title>
+    <title lang="">title</title>
+    <sub-title lang="">subtitle</sub-title>
+    <desc lang="">desc</desc>
     <date>1999</date>
+    <keyword lang="">keyword</keyword>
   </programme>
 </tv>
