@@ -46,7 +46,7 @@ class XmlTvSpec extends ObjectBehavior
         $this->generate($tv, false)->shouldReturn($xml);
     }
 
-    function it_throws_if_the_generated_xml_does_not_validate()
+    function it_throws_if_an_the_generated_xml_does_not_validate()
     {
         $this->shouldThrow('XmlTv\Exceptions\ValidationException')->duringGenerate(new InvalidTv(), true);
     }

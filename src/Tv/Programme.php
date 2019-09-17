@@ -5,14 +5,17 @@ namespace XmlTv\Tv;
 use XmlTv\Tv\Programme\Category;
 use XmlTv\Tv\Programme\Credits;
 use XmlTv\Tv\Programme\Desc;
+use XmlTv\Tv\Programme\EpisodeNum;
+use XmlTv\Tv\Programme\Icon;
 use XmlTv\Tv\Programme\Keyword;
+use XmlTv\Tv\Programme\PreviouslyShown;
 use XmlTv\Tv\Programme\SubTitle;
 use XmlTv\Tv\Programme\Title;
 use XmlTv\XmlElement;
 use XmlTv\XmlSerializable;
 
 /*
- * Todo: icon*, url*, country*, episode-num*, video?, audio?, previously-shown?, premiere?, last-chance?, new?,
+ * Todo: url*, country*, episode-num*, video?, audio?, previously-shown?, premiere?, last-chance?, new?,
  *       subtitles*, rating*, star-rating*, review*
  */
 
@@ -44,6 +47,16 @@ class Programme implements XmlSerializable
      * @var SubTitle[]
      */
     private $subTitle = [];
+
+    /**
+     * @var ?PreviouslyShown
+     */
+    private $previouslyShown;
+
+    /**
+     * @var string
+     */
+    private $icon;
 
     /**
      * @var Desc[]
@@ -84,6 +97,21 @@ class Programme implements XmlSerializable
      * @var string
      */
     public $length;
+
+    /**
+     * @var bool
+     */
+    public $premiere = false;
+
+    /**
+     * @var bool
+     */
+    public $new = false;
+
+    /**
+     * @var EpisodeNum[]
+     */
+    public $episodeNums = [];
 
     /**
      * Programme constructor.
@@ -140,6 +168,26 @@ class Programme implements XmlSerializable
     }
 
     /**
+     * Add a previous showing.
+     *
+     * @param PreviouslyShown $previouslyShown
+     */
+    public function setPreviouslyShown(PreviouslyShown $previouslyShown)
+    {
+        $this->previouslyShown = $previouslyShown;
+    }
+
+    /**
+     * Get all showings.
+     *
+     * @return PreviouslyShown[]
+     */
+    public function getPreviouslyShown(): ?PreviouslyShown
+    {
+        return $this->previouslyShown;
+    }
+
+    /**
      * Add a description.
      *
      * @param Desc $desc
@@ -180,6 +228,26 @@ class Programme implements XmlSerializable
     }
 
     /**
+     * Add episodeNums.
+     *
+     * @param EpisodeNum $episodeNum
+     */
+    public function addEpisodeNum(EpisodeNum $episodeNums)
+    {
+        array_push($this->episodeNums, $episodeNums);
+    }
+
+    /**
+     * Get all episodeNums.
+     *
+     * @return EpisodeNums[]
+     */
+    public function getEpisodeNums(): array
+    {
+        return $this->episodeNums;
+    }
+
+    /**
      * Add a category.
      *
      * @param Category $category
@@ -197,6 +265,26 @@ class Programme implements XmlSerializable
     public function getCategories(): array
     {
         return $this->category;
+    }
+
+    /**
+     * Add a icon.
+     *
+     * @param string $icon
+     */
+    public function setIcon(string $icon)
+    {
+        $this->icon = $icon;
+    }
+
+    /**
+     * Get all categories.
+     *
+     * @return string
+     */
+    public function getIcon(): ?string
+    {
+        return $this->icon;
     }
 
     /**
@@ -221,7 +309,7 @@ class Programme implements XmlSerializable
 
     public function xmlSerialize(): XmlElement
     {
-        return (new XmlElement('programme'))
+        $xml = (new XmlElement('programme'))
             ->withAttribute('start', $this->start)
             ->withAttribute('stop', $this->stop)
             ->withAttribute('channel', $this->channel)
@@ -232,6 +320,27 @@ class Programme implements XmlSerializable
             ->withChildren($this->getCategories())
             ->withChildren($this->getKeywords())
             ->withChild(new XmlElement('language', $this->language))
-            ->withChild(new XmlElement('orig-language', $this->origLanguage));
+            ->withChild(new XmlElement('orig-language', $this->origLanguage))
+            ->withChildren($this->getEpisodeNums());
+
+        //$xml->withChild((new XmlElement('episode-num'))->withAttribute('system', 'onscreen'));
+
+        if ($this->icon) {
+            $xml->withChild((new XmlElement('icon'))->withAttribute('src', $this->getIcon()));
+        }
+
+        if ($this->premiere) {
+            $xml->withChild(new XmlElement('premiere'));
+        }
+
+        if ($this->new) {
+            $xml->withChild(new XmlElement('new', null));
+        }
+
+        if ($this->getPreviouslyShown()) {
+            $xml->withChild($this->getPreviouslyShown());
+        }
+
+        return $xml;
     }
 }
