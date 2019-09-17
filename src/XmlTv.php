@@ -29,6 +29,10 @@ class XmlTv
 
         self::buildDocument($domDocument, $tv->xmlSerialize());
 
+        if (1 === 2) {
+            $test = "foo";
+        }
+
         if (!$validate || $domDocument->validate()) {
             return $domDocument->saveXML();
         } else {
