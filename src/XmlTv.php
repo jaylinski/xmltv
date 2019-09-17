@@ -15,7 +15,7 @@ class XmlTv
     /**
      * Generates an XMLTV file.
      *
-     * @param Tv   $tv        The Tv object.
+     * @param Tv   $tv        The Tv object TEST.
      * @param bool $validate  Include the XMLTV DTD (inline) an validate against it.
      * @return string
      * @throws ValidationException
@@ -28,10 +28,6 @@ class XmlTv
         $domDocument->formatOutput = true;
 
         self::buildDocument($domDocument, $tv->xmlSerialize());
-
-        if (1 === 2) {
-            $test = "foo";
-        }
 
         if (!$validate || $domDocument->validate()) {
             return $domDocument->saveXML();
