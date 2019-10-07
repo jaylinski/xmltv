@@ -16,16 +16,10 @@
         "ext-xmlwriter": "*"
     },
     "require-dev": {
+        "friends-of-phpspec/phpspec-code-coverage": "^4.3",
         "friendsofphp/php-cs-fixer": "^2.14",
-        "leanphp/phpspec-code-coverage": "dev-master",
         "phpspec/phpspec": "^5.1"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/jaylinski/phpspec-code-coverage"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "XmlTv\\": "src/"
