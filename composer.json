@@ -30,6 +30,9 @@
         "lint": "php vendor/bin/php-cs-fixer fix src --rules=@PSR2"
     },
     "config": {
+        "platform": {
+            "php": "7.1"
+        },
         "sort-packages": true
     }
 }
