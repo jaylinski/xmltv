@@ -1,10 +1,10 @@
 <?php
 
-namespace XmlTv\Tv\Channel;
+namespace XmlTv\Tv\Elements;
 
 use XmlTv\Tv\LocalizedValue;
 
 class DisplayName extends LocalizedValue
 {
-    public $name = 'display-name';
+    protected $name = 'display-name';
 }
