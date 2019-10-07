@@ -9,7 +9,7 @@ before_script:
   - travis_retry composer install --prefer-source --no-interaction --dev
 
 script:
-  - vendor/bin/phpspec run --no-interaction
+  - vendor/bin/phpspec run --no-interaction --verbose
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

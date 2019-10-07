@@ -1,10 +1,10 @@
 <?php
 
-namespace XmlTv\Tv\Programme;
+namespace XmlTv\Tv\Elements;
 
 use XmlTv\Tv\LocalizedValue;
 
 class Desc extends LocalizedValue
 {
-    public $name = 'desc';
+    protected $name = 'desc';
 }

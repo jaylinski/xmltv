@@ -1,16 +1,59 @@
 <?xml version="1.0"?>
-<tv source-info-name="" source-info-url="" source-data-url="" generator-info-name="jaylinski/xmltv" generator-info-url="https://github.com/jaylinski/xmltv">
+<tv date="19700102034640 +0000" source-info-url="http://thesource.test/" generator-info-name="jaylinski/xmltv" generator-info-url="https://github.com/jaylinski/xmltv">
   <channel id="test">
     <display-name lang="en">test</display-name>
     <display-name lang="de">test</display-name>
     <icon src="http://foo.bar/img.png" width="200" height="200"/>
+    <url>http://foo.bar/</url>
   </channel>
   <programme start="1" stop="2" channel="test">
-    <title lang="">title</title>
-    <sub-title lang="">subtitle</sub-title>
-    <desc lang="">desc</desc>
+    <title>title</title>
+    <sub-title>subtitle</sub-title>
+    <desc>desc</desc>
+    <credits>
+      <director>Michael May</director>
+      <actor role="Lead">Com Truise</actor>
+      <actor role="Supporting">Foo Bar</actor>
+      <writer>Wri Te</writer>
+      <adapter>Adap Ter</adapter>
+      <producer>Pro Ducer</producer>
+      <composer>Com Poser</composer>
+      <editor>Edi Thor</editor>
+      <presenter>Pre Senter</presenter>
+      <commentator>Com Mentator</commentator>
+      <guest>Lan Stee</guest>
+    </credits>
     <date>1999</date>
-    <category lang="">category</category>
-    <keyword lang="">keyword</keyword>
+    <category>category</category>
+    <keyword>keyword</keyword>
+    <language>de</language>
+    <orig-language>fr</orig-language>
+    <length units="minutes">200</length>
+    <icon src="http://foo.bar/x.png" width="100" height="100"/>
+    <url>http://programme.test/</url>
+    <country lang="en">France</country>
+    <episode-num system="onscreen">1</episode-num>
+    <video>
+      <present>yes</present>
+      <colour>yes</colour>
+      <aspect>4:3</aspect>
+      <quality>UHD</quality>
+    </video>
+    <audio>
+      <present>yes</present>
+      <stereo>stereo</stereo>
+    </audio>
+    <previously-shown channel="foo"/>
+    <premiere>Premiered on PHPTV</premiere>
+    <last-chance lang="en">Get it while it is hot!</last-chance>
+    <subtitles type="onscreen"/>
+    <rating>
+      <value>Good</value>
+      <icon src="http://foo.bar/icon.png" width="500" height="400"/>
+    </rating>
+    <star-rating>
+      <value>5</value>
+    </star-rating>
+    <review type="text">Very nice!</review>
   </programme>
 </tv>

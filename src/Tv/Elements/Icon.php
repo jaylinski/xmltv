@@ -1,6 +1,6 @@
 <?php
 
-namespace XmlTv\Tv\Channel;
+namespace XmlTv\Tv\Elements;
 
 use XmlTv\XmlElement;
 use XmlTv\XmlSerializable;

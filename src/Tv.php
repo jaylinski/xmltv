@@ -10,6 +10,13 @@ class Tv implements XmlSerializable
     const GENERATOR_INFO_NAME = 'jaylinski/xmltv';
     const GENERATOR_INFO_URL = 'https://github.com/jaylinski/xmltv';
 
+    const DATE_FORMAT = 'YmdHis O';
+
+    /**
+     * @var string
+     */
+    public $date;
+
     /**
      * @var string
      */
@@ -38,12 +45,14 @@ class Tv implements XmlSerializable
     /**
      * Tv constructor.
      *
+     * @param string $date Should be the date when the listings were originally produced.
      * @param string $sourceInfoUrl
      * @param string $sourceInfoName
      * @param string $sourceDataUrl
      */
-    public function __construct(string $sourceInfoUrl = '', string $sourceInfoName = '', string $sourceDataUrl = '')
+    public function __construct(string $date = '', string $sourceInfoUrl = '', string $sourceInfoName = '', string $sourceDataUrl = '')
     {
+        $this->date = $date;
         $this->sourceInfoUrl = $sourceInfoUrl;
         $this->sourceInfoName = $sourceInfoName;
         $this->sourceDataUrl = $sourceDataUrl;
@@ -84,6 +93,7 @@ class Tv implements XmlSerializable
     public function xmlSerialize(): XmlElement
     {
         return (new XmlElement('tv'))
+            ->withAttribute('date', $this->date)
             ->withAttribute('source-info-name', $this->sourceInfoName)
             ->withAttribute('source-info-url', $this->sourceInfoUrl)
             ->withAttribute('source-data-url', $this->sourceDataUrl)

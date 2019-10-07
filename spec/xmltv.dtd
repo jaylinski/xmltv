@@ -1,4 +1,4 @@
-<!-- DTD for TV listings http://xmltv.cvs.sourceforge.net/viewvc/xmltv/xmltv/xmltv.dtd -->
+<!-- DTD for TV listings https://raw.githubusercontent.com/XMLTV/xmltv/master/xmltv.dtd -->
 <!ELEMENT tv (channel*, programme*)>
 <!ATTLIST tv date   CDATA #IMPLIED
              source-info-url     CDATA #IMPLIED
@@ -40,7 +40,7 @@
 <!ATTLIST desc lang CDATA #IMPLIED>
 
 <!ELEMENT credits (director*, actor*, writer*, adapter*, producer*,
-                   composer*, editor*, presenter*, commentator*, 
+                   composer*, editor*, presenter*, commentator*,
                    guest* )>
 <!ELEMENT director    (#PCDATA)>
 <!ELEMENT actor       (#PCDATA)>
@@ -74,7 +74,7 @@
 <!ELEMENT icon EMPTY>
 <!ATTLIST icon src         CDATA #REQUIRED
                width       CDATA #IMPLIED
-               height      CDATA #IMPLIED> 
+               height      CDATA #IMPLIED>
 
 <!ELEMENT value (#PCDATA)>
 

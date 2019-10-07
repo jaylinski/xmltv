@@ -1,10 +1,10 @@
 <?php
 
-namespace XmlTv\Tv\Programme;
+namespace XmlTv\Tv\Elements;
 
 use XmlTv\Tv\LocalizedValue;
 
 class Category extends LocalizedValue
 {
-    public $name = 'category';
+    protected $name = 'category';
 }

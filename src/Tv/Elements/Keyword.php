@@ -1,10 +1,10 @@
 <?php
 
-namespace XmlTv\Tv\Programme;
+namespace XmlTv\Tv\Elements;
 
 use XmlTv\Tv\LocalizedValue;
 
 class Keyword extends LocalizedValue
 {
-    public $name = 'keyword';
+    protected $name = 'keyword';
 }

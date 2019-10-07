@@ -1,10 +1,10 @@
 <?php
 
-namespace XmlTv\Tv\Programme;
+namespace XmlTv\Tv\Elements;
 
 use XmlTv\Tv\LocalizedValue;
 
 class SubTitle extends LocalizedValue
 {
-    public $name = 'sub-title';
+    protected $name = 'sub-title';
 }
