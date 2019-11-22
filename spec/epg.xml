@@ -46,6 +46,7 @@
     <previously-shown channel="foo"/>
     <premiere>Premiered on PHPTV</premiere>
     <last-chance lang="en">Get it while it is hot!</last-chance>
+    <new/>
     <subtitles type="onscreen"/>
     <rating>
       <value>Good</value>

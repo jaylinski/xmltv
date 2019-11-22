@@ -13,6 +13,7 @@
     "require": {
         "php": ">=7.1",
         "ext-dom": "*",
+        "ext-libxml": "*",
         "ext-xmlwriter": "*"
     },
     "require-dev": {
