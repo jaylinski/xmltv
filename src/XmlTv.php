@@ -10,7 +10,12 @@ use XMLWriter;
 
 class XmlTv
 {
-    const DTD = __DIR__.'/../spec/xmltv.dtd';
+    private const DTD = __DIR__.'/../spec/xmltv.dtd';
+
+    /**
+     * Contains element names that are empty according to the DTD.
+     */
+    private const EMPTY_ELEMENTS = ['new'];
 
     /**
      * Generates an XMLTV file.
@@ -44,7 +49,7 @@ class XmlTv
      */
     private static function buildDocument(DOMNode &$domNode, XmlElement $xmlElement)
     {
-        if (is_null($xmlElement->getValue()) && !$xmlElement->hasChildren() && !$xmlElement->hasAttributes()) {
+        if (self::isEmptyElement($xmlElement)) {
             return;
         }
 
@@ -87,5 +92,20 @@ class XmlTv
         $domDocument->removeChild($domDocument->documentElement); // Remove the temporary root element.
 
         return $domDocument;
+    }
+
+    /**
+     * Returns `true` if the passed element is empty.
+     *
+     * @param XmlElement $xmlElement
+     * @return bool
+     */
+    private static function isEmptyElement(XmlElement $xmlElement): bool
+    {
+        return
+            is_null($xmlElement->getValue()) &&
+            !$xmlElement->hasChildren() &&
+            !$xmlElement->hasAttributes() &&
+            !in_array($xmlElement->getName(), self::EMPTY_ELEMENTS);
     }
 }
