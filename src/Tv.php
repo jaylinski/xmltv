@@ -7,10 +7,10 @@ use XmlTv\Tv\Programme;
 
 class Tv implements XmlSerializable
 {
-    const GENERATOR_INFO_NAME = 'jaylinski/xmltv';
-    const GENERATOR_INFO_URL = 'https://github.com/jaylinski/xmltv';
+    protected const GENERATOR_INFO_NAME = 'jaylinski/xmltv';
+    protected const GENERATOR_INFO_URL = 'https://github.com/jaylinski/xmltv';
 
-    const DATE_FORMAT = 'YmdHis O';
+    public const DATE_FORMAT = 'YmdHis O';
 
     /**
      * @var string

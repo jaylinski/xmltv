@@ -204,8 +204,14 @@ class Programme implements XmlSerializable
      * @param string $clumpidx
      */
     public function __construct(
-        string $channel, string $start, string $stop = '', string $pdcStart = '', string $vpsStart = '',
-        string $showview = '', string $videoplus = '', string $clumpidx = ''
+        string $channel,
+        string $start,
+        string $stop = '',
+        string $pdcStart = '',
+        string $vpsStart = '',
+        string $showview = '',
+        string $videoplus = '',
+        string $clumpidx = ''
     ) {
         $this->channel = $channel;
         $this->start = $start;
