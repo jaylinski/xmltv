@@ -29,7 +29,7 @@
     <language>de</language>
     <orig-language>fr</orig-language>
     <length units="minutes">200</length>
-    <icon src="http://foo.bar/x.png" width="100" height="100"/>
+    <icon src="http://foo.bar/x.png"/>
     <url>http://programme.test/</url>
     <country lang="en">France</country>
     <episode-num system="onscreen">1</episode-num>
