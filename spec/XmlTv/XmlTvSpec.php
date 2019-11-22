@@ -31,7 +31,7 @@ class XmlTvSpec extends ObjectBehavior
         $channel = new Tv\Channel('test');
         $channel->addDisplayName(new Tv\Elements\DisplayName('test', 'en'));
         $channel->addDisplayName(new Tv\Elements\DisplayName('test', 'de'));
-        $channel->addIcon(new Tv\Elements\Icon('http://foo.bar/img.png', 200, 200));
+        $channel->addIcon(new Tv\Elements\Icon('http://foo.bar/img.png', '200', '200'));
         $channel->addUrl(new Tv\Elements\Url('http://foo.bar/'));
 
         $programme = new Tv\Programme('test', '1', '2');
@@ -57,7 +57,7 @@ class XmlTvSpec extends ObjectBehavior
         $programme->language = new Tv\Elements\Language('de');
         $programme->origLanguage = new Tv\Elements\OrigLanguage('fr');
         $programme->length = new Tv\Elements\Length('200', Tv\Elements\Length\Unit::MINUTES);
-        $programme->addIcon(new Tv\Elements\Icon('http://foo.bar/x.png', 100, 100));
+        $programme->addIcon(new Tv\Elements\Icon('http://foo.bar/x.png'));
         $programme->addUrl(new Tv\Elements\Url('http://programme.test/'));
         $programme->addCountry(new Tv\Elements\Country('France', 'en'));
         $programme->addEpisodeNum(new Tv\Elements\EpisodeNum('1'));
@@ -69,7 +69,7 @@ class XmlTvSpec extends ObjectBehavior
         $programme->new = new Tv\Elements\NewProgramme();
         $programme->addSubtitles(new Tv\Elements\Subtitles('en', Tv\Elements\Subtitles\Type::ONSCREEN));
         $rating = new Tv\Elements\Rating('Good');
-        $rating->addIcon(new Tv\Elements\Icon('http://foo.bar/icon.png', 500, 400));
+        $rating->addIcon(new Tv\Elements\Icon('http://foo.bar/icon.png', '500', '400'));
         $programme->addRating($rating);
         $programme->addStarRating(new Tv\Elements\StarRating('5'));
         $programme->addReview(new Tv\Elements\Review('Very nice!', Tv\Elements\Review\Type::TEXT));
