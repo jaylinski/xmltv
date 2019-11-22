@@ -46,8 +46,6 @@ A more detailed example can be found in the
 
 You can write your own source by implementing the `XmlTv\Tv\Source` interface.
 
-## Copyright and license
-
-Copyright &copy; Jakob Linskeseder
+## License
 
 XMLTV is licensed under the MIT License - see the `LICENSE` file for details.

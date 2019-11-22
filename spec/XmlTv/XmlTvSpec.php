@@ -67,12 +67,12 @@ class XmlTvSpec extends ObjectBehavior
         $programme->premiere = new Tv\Elements\Premiere('Premiered on PHPTV');
         $programme->lastChance = new Tv\Elements\LastChance('Get it while it is hot!', 'en');
         $programme->new = new Tv\Elements\NewProgramme();
-        $programme->addSubtitles(new Tv\Elements\Subtitles('en', 'onscreen'));
+        $programme->addSubtitles(new Tv\Elements\Subtitles('en', Tv\Elements\Subtitles\Type::ONSCREEN));
         $rating = new Tv\Elements\Rating('Good');
         $rating->addIcon(new Tv\Elements\Icon('http://foo.bar/icon.png', 500, 400));
         $programme->addRating($rating);
         $programme->addStarRating(new Tv\Elements\StarRating('5'));
-        $programme->addReview(new Tv\Elements\Review('Very nice!', 'text'));
+        $programme->addReview(new Tv\Elements\Review('Very nice!', Tv\Elements\Review\Type::TEXT));
 
         $tv->addChannel($channel);
         $tv->addProgramme($programme);
