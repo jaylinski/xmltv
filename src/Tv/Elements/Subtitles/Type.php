@@ -4,7 +4,7 @@ namespace XmlTv\Tv\Elements\Subtitles;
 
 interface Type
 {
-    const TELETEXT = 'teletext';
-    const ONSCREEN = 'onscreen';
-    const DEAF_SIGNED = 'deaf-signed';
+    public const TELETEXT = 'teletext';
+    public const ONSCREEN = 'onscreen';
+    public const DEAF_SIGNED = 'deaf-signed';
 }

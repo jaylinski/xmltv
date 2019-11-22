@@ -4,6 +4,6 @@ namespace XmlTv\Tv\Elements\Review;
 
 interface Type
 {
-    const TEXT = 'text';
-    const URL = 'url';
+    public const TEXT = 'text';
+    public const URL = 'url';
 }
