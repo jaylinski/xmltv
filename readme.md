@@ -28,7 +28,7 @@ $tv = new Tv();
 $channel = new Tv\Channel('channel1');
 $channel->addDisplayName(new Tv\Elements\DisplayName('Channel 1', 'en'));
 
-$programme = new Tv\Programme('20170914190000 +0200', '20170914200000 +0200', 'channel1');
+$programme = new Tv\Programme('channel1', '20170914190000 +0200', '20170914200000 +0200');
 $programme->addTitle(new Tv\Elements\Title('CNN News', 'en'));
 $programme->addDescription(new Tv\Elements\Desc('World news', 'en'));
 $programme->addCategory(new Tv\Elements\Category('news', 'en'));
