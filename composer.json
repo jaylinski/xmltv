@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.2",
         "ext-dom": "*",
         "ext-libxml": "*",
         "ext-xmlwriter": "*"
@@ -19,7 +19,7 @@
     "require-dev": {
         "friends-of-phpspec/phpspec-code-coverage": "^4.3",
         "friendsofphp/php-cs-fixer": "^2.14",
-        "phpspec/phpspec": "^5.1"
+        "phpspec/phpspec": "^6.1"
     },
     "autoload": {
         "psr-4": {
@@ -32,7 +32,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.1"
+            "php": "7.2"
         },
         "sort-packages": true
     }
