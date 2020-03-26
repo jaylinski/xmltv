@@ -27,8 +27,8 @@
         }
     },
     "scripts": {
-        "test": "php vendor/bin/phpspec run --ansi",
-        "lint": "php vendor/bin/php-cs-fixer fix src --rules=@PSR2"
+        "test": "phpspec run --ansi",
+        "lint": "php-cs-fixer fix src --rules=@PSR2"
     },
     "config": {
         "platform": {
