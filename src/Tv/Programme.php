@@ -228,7 +228,7 @@ class Programme implements XmlSerializable
      *
      * @param Title $title
      */
-    public function addTitle(Title $title)
+    public function addTitle(Title $title): void
     {
         array_push($this->title, $title);
     }
@@ -248,7 +248,7 @@ class Programme implements XmlSerializable
      *
      * @param SubTitle $subTitle
      */
-    public function addSubTitle(SubTitle $subTitle)
+    public function addSubTitle(SubTitle $subTitle): void
     {
         array_push($this->subTitle, $subTitle);
     }
@@ -268,7 +268,7 @@ class Programme implements XmlSerializable
      *
      * @param Desc $desc
      */
-    public function addDescription(Desc $desc)
+    public function addDescription(Desc $desc): void
     {
         array_push($this->desc, $desc);
     }
@@ -288,7 +288,7 @@ class Programme implements XmlSerializable
      *
      * @param Credits $credits
      */
-    public function addCredits(Credits $credits)
+    public function addCredits(Credits $credits): void
     {
         array_push($this->credits, $credits);
     }
@@ -308,7 +308,7 @@ class Programme implements XmlSerializable
      *
      * @param Category $category
      */
-    public function addCategory(Category $category)
+    public function addCategory(Category $category): void
     {
         array_push($this->category, $category);
     }
@@ -328,7 +328,7 @@ class Programme implements XmlSerializable
      *
      * @param Keyword $keyword
      */
-    public function addKeyword(Keyword $keyword)
+    public function addKeyword(Keyword $keyword): void
     {
         array_push($this->keyword, $keyword);
     }
@@ -348,7 +348,7 @@ class Programme implements XmlSerializable
      *
      * @param Icon $icon
      */
-    public function addIcon(Icon $icon)
+    public function addIcon(Icon $icon): void
     {
         array_push($this->icon, $icon);
     }
@@ -368,7 +368,7 @@ class Programme implements XmlSerializable
      *
      * @param Url $url
      */
-    public function addUrl(Url $url)
+    public function addUrl(Url $url): void
     {
         array_push($this->url, $url);
     }
@@ -388,7 +388,7 @@ class Programme implements XmlSerializable
      *
      * @param Country $country
      */
-    public function addCountry(Country $country)
+    public function addCountry(Country $country): void
     {
         array_push($this->country, $country);
     }
@@ -408,7 +408,7 @@ class Programme implements XmlSerializable
      *
      * @param EpisodeNum $episodeNum
      */
-    public function addEpisodeNum(EpisodeNum $episodeNum)
+    public function addEpisodeNum(EpisodeNum $episodeNum): void
     {
         array_push($this->episodeNum, $episodeNum);
     }
@@ -428,7 +428,7 @@ class Programme implements XmlSerializable
      *
      * @param Subtitles $subtitles
      */
-    public function addSubtitles(Subtitles $subtitles)
+    public function addSubtitles(Subtitles $subtitles): void
     {
         array_push($this->subtitles, $subtitles);
     }
@@ -448,7 +448,7 @@ class Programme implements XmlSerializable
      *
      * @param Rating $rating
      */
-    public function addRating(Rating $rating)
+    public function addRating(Rating $rating): void
     {
         array_push($this->rating, $rating);
     }
@@ -467,7 +467,7 @@ class Programme implements XmlSerializable
      *
      * @param StarRating $rating
      */
-    public function addStarRating(StarRating $rating)
+    public function addStarRating(StarRating $rating): void
     {
         array_push($this->starRating, $rating);
     }
@@ -487,7 +487,7 @@ class Programme implements XmlSerializable
      *
      * @param Review $review
      */
-    public function addReview(Review $review)
+    public function addReview(Review $review): void
     {
         array_push($this->review, $review);
     }

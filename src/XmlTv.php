@@ -10,7 +10,7 @@ use XMLWriter;
 
 class XmlTv
 {
-    private const DTD = __DIR__.'/../spec/xmltv.dtd';
+    private const DTD = __DIR__ . '/../spec/xmltv.dtd';
 
     /**
      * Contains element names that are empty according to the DTD.
@@ -37,7 +37,7 @@ class XmlTv
         if (!$validate || $domDocument->validate()) {
             return $domDocument->saveXML();
         } else {
-            throw new ValidationException('DTD validation failed: '.libxml_get_last_error()->message);
+            throw new ValidationException('DTD validation failed: ' . libxml_get_last_error()->message);
         }
     }
 
@@ -56,8 +56,10 @@ class XmlTv
         $element = new DOMElement($xmlElement->getName());
         $node = $domNode->appendChild($element);
 
-        foreach ($xmlElement->getAttributes() as $attribute => $value) {
-            $node->setAttribute($attribute, $value);
+        if ($node instanceof DOMElement) {
+            foreach ($xmlElement->getAttributes() as $attribute => $value) {
+                $node->setAttribute($attribute, $value);
+            }
         }
 
         if ($xmlElement->hasChildren()) {

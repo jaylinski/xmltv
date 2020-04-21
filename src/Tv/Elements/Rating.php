@@ -22,23 +22,23 @@ class Rating implements XmlSerializable
      */
     private $icon = [];
 
-    /**
-     * Length constructor.
-     *
-     * @param string $value
-     * @param string $system
-     */
     public function __construct(string $value, string $system = '')
     {
         $this->value = $value;
         $this->system = $system;
     }
 
-    public function addIcon(Icon $icon)
+    /**
+     * @param Icon $icon
+     */
+    public function addIcon(Icon $icon): void
     {
         array_push($this->icon, $icon);
     }
 
+    /**
+     * @return Icon[]
+     */
     public function getIcon(): array
     {
         return $this->icon;

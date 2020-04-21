@@ -17,12 +17,6 @@ class PreviouslyShown implements XmlSerializable
      */
     public $channel;
 
-    /**
-     * PreviouslyShown constructor.
-     *
-     * @param string $start
-     * @param string $channel
-     */
     public function __construct(string $start = '', string $channel = '')
     {
         $this->start = $start;

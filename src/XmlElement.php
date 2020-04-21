@@ -13,7 +13,7 @@ class XmlElement implements XmlSerializable
     private $name;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $value;
 
@@ -37,8 +37,6 @@ class XmlElement implements XmlSerializable
     {
         $this->name = $name;
         $this->value = $value;
-
-        return $this;
     }
 
     /**

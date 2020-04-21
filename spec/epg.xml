@@ -47,7 +47,9 @@
     <premiere>Premiered on PHPTV</premiere>
     <last-chance lang="en">Get it while it is hot!</last-chance>
     <new/>
-    <subtitles type="onscreen"/>
+    <subtitles type="onscreen">
+      <language>en</language>
+    </subtitles>
     <rating>
       <value>Good</value>
       <icon src="http://foo.bar/icon.png" width="500" height="400"/>
