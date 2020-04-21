@@ -45,7 +45,7 @@ class Channel implements XmlSerializable
      *
      * @param DisplayName $displayName
      */
-    public function addDisplayName(DisplayName $displayName)
+    public function addDisplayName(DisplayName $displayName): void
     {
         array_push($this->displayName, $displayName);
     }
@@ -65,7 +65,7 @@ class Channel implements XmlSerializable
      *
      * @param Icon $icon
      */
-    public function addIcon(Icon $icon)
+    public function addIcon(Icon $icon): void
     {
         array_push($this->icon, $icon);
     }
@@ -75,7 +75,7 @@ class Channel implements XmlSerializable
      *
      * @param Url $url
      */
-    public function addUrl(Url $url)
+    public function addUrl(Url $url): void
     {
         array_push($this->url, $url);
     }

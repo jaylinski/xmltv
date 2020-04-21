@@ -61,7 +61,7 @@ class Tv implements XmlSerializable
     /**
      * @param Channel $channel
      */
-    public function addChannel(Channel $channel)
+    public function addChannel(Channel $channel): void
     {
         array_push($this->channel, $channel);
     }
@@ -77,7 +77,7 @@ class Tv implements XmlSerializable
     /**
      * @param Programme $programme
      */
-    public function addProgramme(Programme $programme)
+    public function addProgramme(Programme $programme): void
     {
         array_push($this->programme, $programme);
     }
