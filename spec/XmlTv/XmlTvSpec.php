@@ -35,6 +35,7 @@ class XmlTvSpec extends ObjectBehavior
         $channel->addUrl(new Tv\Elements\Url('http://foo.bar/'));
 
         $programme = new Tv\Programme('test', '1', '2');
+        $programme->catchupId = 'plugin://plugin.video.test/?catchup-id=foo';
         $programme->addTitle(new Tv\Elements\Title('title'));
         $programme->addSubTitle(new Tv\Elements\SubTitle('subtitle'));
         $programme->addDescription(new Tv\Elements\Desc('desc'));
