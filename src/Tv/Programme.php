@@ -34,6 +34,11 @@ class Programme implements XmlSerializable
     /**
      * @var string
      */
+    public $channel;
+
+    /**
+     * @var string
+     */
     public $start;
 
     /**
@@ -62,14 +67,15 @@ class Programme implements XmlSerializable
     public $videoplus;
 
     /**
-     * @var string
-     */
-    public $channel;
-
-    /**
      * @var string Legal values are `0` or `1`.
      */
     public $clumpidx;
+
+    /**
+     * @var string A programme specific identifier for catchup URLs. Not part of the XMLTV specification.
+     * @see https://github.com/kodi-pvr/pvr.iptvsimple/tree/7.0.0-Matrix#supported-m3u-and-xmltv-elements
+     */
+    public $catchupId;
 
     /**
      * @var Title[]
@@ -202,6 +208,7 @@ class Programme implements XmlSerializable
      * @param string $showview
      * @param string $videoplus
      * @param string $clumpidx
+     * @param string $catchupId
      */
     public function __construct(
         string $channel,
@@ -505,14 +512,15 @@ class Programme implements XmlSerializable
     public function xmlSerialize(): XmlElement
     {
         return (new XmlElement('programme'))
+            ->withAttribute('channel', $this->channel)
             ->withAttribute('start', $this->start)
             ->withAttribute('stop', $this->stop)
             ->withAttribute('pdc-start', $this->pdcStart)
             ->withAttribute('vps-start', $this->vpsStart)
             ->withAttribute('showview', $this->showview)
             ->withAttribute('videoplus', $this->videoplus)
-            ->withAttribute('channel', $this->channel)
             ->withAttribute('clumpidx', $this->clumpidx)
+            ->withAttribute('catchup-id', $this->catchupId)
             ->withChildren($this->getTitle())
             ->withChildren($this->getSubTitle())
             ->withChildren($this->getDescription())

@@ -6,7 +6,7 @@
     <icon src="http://foo.bar/img.png" width="200" height="200"/>
     <url>http://foo.bar/</url>
   </channel>
-  <programme start="1" stop="2" channel="test">
+  <programme channel="test" start="1" stop="2" catchup-id="plugin://plugin.video.test/?catchup-id=foo">
     <title>title</title>
     <sub-title>subtitle</sub-title>
     <desc>desc</desc>
