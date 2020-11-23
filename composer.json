@@ -11,16 +11,16 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "ext-dom": "*",
         "ext-libxml": "*",
         "ext-xmlwriter": "*"
     },
     "require-dev": {
-        "friends-of-phpspec/phpspec-code-coverage": "^5.0",
-        "friendsofphp/php-cs-fixer": "^2.14",
-        "phpspec/phpspec": "^6.1",
-        "phpstan/phpstan": "^0.12.57"
+        "friends-of-phpspec/phpspec-code-coverage": "^6.0",
+        "friendsofphp/php-cs-fixer": "^2.17",
+        "phpspec/phpspec": "^7.0",
+        "phpstan/phpstan": "^0.12"
     },
     "autoload": {
         "psr-4": {
@@ -36,7 +36,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.2"
+            "php": "7.3"
         },
         "sort-packages": true
     }
