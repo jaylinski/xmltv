@@ -18,70 +18,52 @@ class XmlElement implements XmlSerializable
     private $value;
 
     /**
-     * @var array
+     * @var string[]
      */
     private $attributes = [];
 
     /**
-     * @var array
+     * @var XmlElement[]
      */
     private $children = [];
 
-    /**
-     * XmlElement constructor.
-     *
-     * @param string $name
-     * @param string|null $value
-     */
     public function __construct(string $name, string $value = null)
     {
         $this->name = $name;
         $this->value = $value;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getValue()
+    public function getValue(): ?string
     {
         return $this->value;
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return bool
-     */
     public function hasAttributes(): bool
     {
         return count($this->attributes) > 0;
     }
 
     /**
-     * @return array
+     * @return XmlElement[]
      */
     public function getChildren(): array
     {
         return $this->children;
     }
 
-    /**
-     * @return bool
-     */
     public function hasChildren(): bool
     {
         return count($this->children) > 0;
@@ -92,9 +74,9 @@ class XmlElement implements XmlSerializable
      *
      * @param string $name
      * @param string $value
-     * @return $this
+     * @return XmlElement
      */
-    public function withAttribute(string $name, string $value)
+    public function withAttribute(string $name, string $value): XmlElement
     {
         if (!empty($value)) {
             $this->attributes[$name] = $value;
@@ -104,42 +86,39 @@ class XmlElement implements XmlSerializable
     }
 
     /**
-     * Add child.
+     * Add a child.
      *
-     * @param XmlSerializable $child
-     * @return $this
+     * @param ?XmlSerializable $child
+     * @return XmlElement
      */
-    public function withChild(XmlSerializable $child)
-    {
-        array_push($this->children, $child->xmlSerialize());
-
-        return $this;
-    }
-
-    /**
-     * Add optional child.
-     *
-     * @param XmlSerializable|mixed $child
-     * @return $this
-     */
-    public function withOptionalChild($child)
+    public function withChild(?XmlSerializable $child): XmlElement
     {
         if ($child instanceof XmlSerializable) {
             array_push($this->children, $child->xmlSerialize());
-        } elseif (is_object($child)) {
-            trigger_error('Could not serialize ' . get_class($child), E_USER_WARNING);
         }
 
         return $this;
     }
 
     /**
+     * Add an optional child.
+     *
+     * @param ?XmlSerializable $child
+     * @return XmlElement
+     * @deprecated Use `XmlElement::withChild()` instead.
+     */
+    public function withOptionalChild(?XmlSerializable $child): XmlElement
+    {
+        return $this->withChild($child);
+    }
+
+    /**
      * Add children.
      *
      * @param XmlSerializable[] $children
-     * @return $this
+     * @return XmlElement
      */
-    public function withChildren(array $children)
+    public function withChildren(array $children): XmlElement
     {
         foreach ($children as $child) {
             $this->withChild($child);

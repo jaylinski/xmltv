@@ -75,7 +75,7 @@ class Programme implements XmlSerializable
      * @var string A programme specific identifier for catchup URLs. Not part of the XMLTV specification.
      * @see https://github.com/kodi-pvr/pvr.iptvsimple/tree/7.0.0-Matrix#supported-m3u-and-xmltv-elements
      */
-    public $catchupId;
+    public $catchupId = '';
 
     /**
      * @var Title[]
@@ -197,19 +197,6 @@ class Programme implements XmlSerializable
      */
     private $review = [];
 
-    /**
-     * Programme constructor.
-     *
-     * @param string $channel
-     * @param string $start
-     * @param string $stop
-     * @param string $pdcStart
-     * @param string $vpsStart
-     * @param string $showview
-     * @param string $videoplus
-     * @param string $clumpidx
-     * @param string $catchupId
-     */
     public function __construct(
         string $channel,
         string $start,
@@ -525,22 +512,22 @@ class Programme implements XmlSerializable
             ->withChildren($this->getSubTitle())
             ->withChildren($this->getDescription())
             ->withChildren($this->getCredits())
-            ->withOptionalChild($this->date)
+            ->withChild($this->date)
             ->withChildren($this->getCategory())
             ->withChildren($this->getKeyword())
-            ->withOptionalChild($this->language)
-            ->withOptionalChild($this->origLanguage)
-            ->withOptionalChild($this->length)
+            ->withChild($this->language)
+            ->withChild($this->origLanguage)
+            ->withChild($this->length)
             ->withChildren($this->getIcon())
             ->withChildren($this->getUrl())
             ->withChildren($this->getCountry())
             ->withChildren($this->getEpisodeNum())
-            ->withOptionalChild($this->video)
-            ->withOptionalChild($this->audio)
-            ->withOptionalChild($this->previouslyShown)
-            ->withOptionalChild($this->premiere)
-            ->withOptionalChild($this->lastChance)
-            ->withOptionalChild($this->new)
+            ->withChild($this->video)
+            ->withChild($this->audio)
+            ->withChild($this->previouslyShown)
+            ->withChild($this->premiere)
+            ->withChild($this->lastChance)
+            ->withChild($this->new)
             ->withChildren($this->getSubtitles())
             ->withChildren($this->getRating())
             ->withChildren($this->getStarRating())
