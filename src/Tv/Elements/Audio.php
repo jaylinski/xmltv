@@ -33,7 +33,7 @@ class Audio implements XmlSerializable
     public function xmlSerialize(): XmlElement
     {
         return (new XmlElement('audio'))
-            ->withOptionalChild(new XmlElement('present', $this->present))
-            ->withOptionalChild(new XmlElement('stereo', $this->stereo));
+            ->withChild(new XmlElement('present', $this->present))
+            ->withChild(new XmlElement('stereo', $this->stereo));
     }
 }

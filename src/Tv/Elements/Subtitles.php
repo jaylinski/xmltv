@@ -31,6 +31,6 @@ class Subtitles implements XmlSerializable
     {
         return (new XmlElement('subtitles'))
             ->withAttribute('type', $this->type)
-            ->withOptionalChild($this->language);
+            ->withChild($this->language);
     }
 }

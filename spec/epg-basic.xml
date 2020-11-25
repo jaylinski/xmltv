@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<tv generator-info-name="jaylinski/xmltv" generator-info-url="https://github.com/jaylinski/xmltv">
+  <channel id="test">
+    <display-name>foo</display-name>
+  </channel>
+  <programme channel="test" start="1" stop="2">
+    <title>bar</title>
+    <video>
+      <present>yes</present>
+    </video>
+    <audio>
+      <present>no</present>
+    </audio>
+  </programme>
+</tv>

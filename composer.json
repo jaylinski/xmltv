@@ -19,7 +19,8 @@
     "require-dev": {
         "friends-of-phpspec/phpspec-code-coverage": "^5.0",
         "friendsofphp/php-cs-fixer": "^2.14",
-        "phpspec/phpspec": "^6.1"
+        "phpspec/phpspec": "^6.1",
+        "phpstan/phpstan": "^0.12.57"
     },
     "autoload": {
         "psr-4": {
@@ -28,7 +29,10 @@
     },
     "scripts": {
         "test": "phpspec run --ansi",
-        "lint": "php-cs-fixer fix src --rules=@PSR2"
+        "test-ci": "phpspec run --no-interaction --verbose",
+        "lint": "php-cs-fixer fix src --rules=@PSR2",
+        "lint-ci": "php-cs-fixer fix src --dry-run --rules=@PSR2",
+        "analyse": "phpstan analyse --level 4 src"
     },
     "config": {
         "platform": {

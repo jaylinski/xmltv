@@ -36,18 +36,21 @@ class XmlTv
 
         if (!$validate || $domDocument->validate()) {
             return $domDocument->saveXML();
-        } else {
-            throw new ValidationException('DTD validation failed: ' . libxml_get_last_error()->message);
         }
+
+        $errorMessage = libxml_get_last_error() instanceof \LibXMLError ? libxml_get_last_error()->message : 'error';
+
+        throw new ValidationException('DTD validation failed: ' . $errorMessage);
     }
 
     /**
      * Render the serialized XML (recursively).
      *
-     * @param DOMNode     $domNode
-     * @param XmlElement  $xmlElement
+     * @param DOMNode $domNode
+     * @param XmlElement $xmlElement
+     * @return void
      */
-    private static function buildDocument(DOMNode &$domNode, XmlElement $xmlElement)
+    private static function buildDocument(DOMNode $domNode, XmlElement $xmlElement): void
     {
         if (self::isEmptyElement($xmlElement)) {
             return;
@@ -105,7 +108,7 @@ class XmlTv
     private static function isEmptyElement(XmlElement $xmlElement): bool
     {
         return
-            is_null($xmlElement->getValue()) &&
+            empty($xmlElement->getValue()) &&
             !$xmlElement->hasChildren() &&
             !$xmlElement->hasAttributes() &&
             !in_array($xmlElement->getName(), self::EMPTY_ELEMENTS);

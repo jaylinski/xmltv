@@ -2,6 +2,7 @@
 
 namespace spec\XmlTv;
 
+use XmlTv\Exceptions\ValidationException;
 use XmlTv\Tv;
 use XmlTv\XmlElement;
 use XmlTv\XmlTv;
@@ -21,7 +22,25 @@ class XmlTvSpec extends ObjectBehavior
         $this->generate(new Tv(), false)->shouldReturn($xml);
     }
 
-    function it_generates_an_xml_file()
+    function it_generates_a_basic_xml_file()
+    {
+        $xml = file_get_contents(__DIR__.'/../epg-basic.xml');
+
+        $tv = new Tv();
+        $channel = new Tv\Channel('test');
+        $channel->addDisplayName(new Tv\Elements\DisplayName('foo'));
+        $programme = new Tv\Programme('test', '1', '2');
+        $programme->addTitle(new Tv\Elements\Title('bar'));
+        $programme->video = new Tv\Elements\Video('yes');
+        $programme->audio = new Tv\Elements\Audio('no');
+
+        $tv->addChannel($channel);
+        $tv->addProgramme($programme);
+
+        $this->generate($tv, false)->shouldReturn($xml);
+    }
+
+    function it_generates_a_xml_file()
     {
         $xml = file_get_contents(__DIR__.'/../epg.xml');
         $date = gmdate(Tv::DATE_FORMAT, 100000);
@@ -85,12 +104,19 @@ class XmlTvSpec extends ObjectBehavior
 
     function it_throws_if_the_generated_xml_does_not_validate()
     {
-        $this->shouldThrow('XmlTv\Exceptions\ValidationException')->duringGenerate(new InvalidTv(), true);
+        $this->shouldThrow(ValidationException::class)->duringGenerate(new InvalidTv(), true);
     }
 
-    function it_triggers_a_warning_if_an_element_cannot_be_serialized()
+    function it_throws_if_an_element_cannot_be_serialized()
     {
-        $this->shouldTrigger(E_USER_WARNING)->duringGenerate(new UnserializableChild(), false);
+        $this->shouldThrow(\TypeError::class)->duringGenerate(new UnserializableChild(), false);
+    }
+
+    function it_provides_support_for_legacy_code()
+    {
+        $xml = '<?xml version="1.0"?>' . PHP_EOL . '<tv/>' . PHP_EOL;
+
+        $this->generate(new LegacyMethods(), false)->shouldReturn($xml);
     }
 }
 
@@ -108,6 +134,15 @@ class UnserializableChild extends Tv
     public function xmlSerialize(): XmlElement
     {
         return (new XmlElement('tv'))
-            ->withOptionalChild(new \stdClass());
+            ->withChild(new \stdClass());
+    }
+}
+
+class LegacyMethods extends Tv
+{
+    public function xmlSerialize(): XmlElement
+    {
+        return (new XmlElement('tv'))
+            ->withOptionalChild(new XmlElement('foo'));
     }
 }

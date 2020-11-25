@@ -30,11 +30,6 @@ class Channel implements XmlSerializable
      */
     private $url = [];
 
-    /**
-     * Channel constructor.
-     *
-     * @param string $id
-     */
     public function __construct(string $id)
     {
         $this->id = $id;

@@ -46,9 +46,9 @@ class Video implements XmlSerializable
     public function xmlSerialize(): XmlElement
     {
         return (new XmlElement('video'))
-            ->withOptionalChild(new XmlElement('present', $this->present))
-            ->withOptionalChild(new XmlElement('colour', $this->colour))
-            ->withOptionalChild(new XmlElement('aspect', $this->aspect))
-            ->withOptionalChild(new XmlElement('quality', $this->quality));
+            ->withChild(new XmlElement('present', $this->present))
+            ->withChild(new XmlElement('colour', $this->colour))
+            ->withChild(new XmlElement('aspect', $this->aspect))
+            ->withChild(new XmlElement('quality', $this->quality));
     }
 }
