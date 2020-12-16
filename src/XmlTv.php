@@ -70,9 +70,7 @@ class XmlTv
                 self::buildDocument($node, $child);
             }
         } else {
-            if (!is_null($xmlElement->getValue())) {
-                $node->textContent = $xmlElement->getValue();
-            }
+            $node->textContent = $xmlElement->getValue() ?? '';
         }
     }
 
@@ -111,6 +109,6 @@ class XmlTv
             empty($xmlElement->getValue()) &&
             !$xmlElement->hasChildren() &&
             !$xmlElement->hasAttributes() &&
-            !in_array($xmlElement->getName(), self::EMPTY_ELEMENTS);
+            !in_array($xmlElement->getName(), self::EMPTY_ELEMENTS, $strict = true);
     }
 }
