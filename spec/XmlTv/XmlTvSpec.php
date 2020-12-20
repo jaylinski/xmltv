@@ -111,13 +111,6 @@ class XmlTvSpec extends ObjectBehavior
     {
         $this->shouldThrow(\TypeError::class)->duringGenerate(new UnserializableChild(), false);
     }
-
-    function it_provides_support_for_legacy_code()
-    {
-        $xml = '<?xml version="1.0"?>' . PHP_EOL . '<tv/>' . PHP_EOL;
-
-        $this->generate(new LegacyMethods(), false)->shouldReturn($xml);
-    }
 }
 
 class InvalidTv extends Tv
@@ -135,14 +128,5 @@ class UnserializableChild extends Tv
     {
         return (new XmlElement('tv'))
             ->withChild(new \stdClass());
-    }
-}
-
-class LegacyMethods extends Tv
-{
-    public function xmlSerialize(): XmlElement
-    {
-        return (new XmlElement('tv'))
-            ->withOptionalChild(new XmlElement('foo'));
     }
 }

@@ -101,18 +101,6 @@ class XmlElement implements XmlSerializable
     }
 
     /**
-     * Add an optional child.
-     *
-     * @param ?XmlSerializable $child
-     * @return XmlElement
-     * @deprecated Use `XmlElement::withChild()` instead.
-     */
-    public function withOptionalChild(?XmlSerializable $child): XmlElement
-    {
-        return $this->withChild($child);
-    }
-
-    /**
      * Add children.
      *
      * @param XmlSerializable[] $children
