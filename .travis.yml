@@ -18,4 +18,5 @@ script:
   - composer run analyse
 
 after_success:
+  - env
   - bash <(curl -s https://codecov.io/bash)
