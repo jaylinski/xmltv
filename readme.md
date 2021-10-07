@@ -1,7 +1,7 @@
 # XMLTV
 
 [![Latest Stable Version](https://poser.pugx.org/jaylinski/xmltv/v/stable)](https://packagist.org/packages/jaylinski/xmltv)
-[![Build](https://travis-ci.com/jaylinski/xmltv.svg?branch=master)](https://travis-ci.com/jaylinski/xmltv)
+[![Build](https://img.shields.io/github/workflow/status/jaylinski/xmltv/Continuous%20Integration/master)](https://github.com/jaylinski/xmltv/actions)
 [![Code Coverage](https://codecov.io/gh/jaylinski/xmltv/branch/master/graph/badge.svg)](https://codecov.io/gh/jaylinski/xmltv)
 [![Code Style](https://styleci.io/repos/101584271/shield)](https://styleci.io/repos/101584271)
 
