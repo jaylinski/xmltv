@@ -17,10 +17,10 @@
         "ext-xmlwriter": "*"
     },
     "require-dev": {
-        "friends-of-phpspec/phpspec-code-coverage": "^6.0",
-        "friendsofphp/php-cs-fixer": "^2.17",
+        "friends-of-phpspec/phpspec-code-coverage": "^6.1",
+        "friendsofphp/php-cs-fixer": "^3.4",
         "phpspec/phpspec": "^7.0",
-        "phpstan/phpstan": "^0.12"
+        "phpstan/phpstan": "^1.2"
     },
     "autoload": {
         "psr-4": {
@@ -30,7 +30,7 @@
     "scripts": {
         "test": "phpspec run --ansi",
         "test-ci": "phpspec run --no-interaction --verbose",
-        "lint": "php-cs-fixer fix src --rules=@PSR2",
+        "lint": "php-cs-fixer fix src --rules=@PSR12",
         "lint-ci": "php-cs-fixer fix src --dry-run --rules=@PSR2",
         "analyse": "phpstan analyse --level 4 src"
     },
