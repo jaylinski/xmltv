@@ -31,7 +31,7 @@
         "test": "phpspec run --ansi",
         "test-ci": "phpspec run --no-interaction --verbose",
         "lint": "php-cs-fixer fix src --rules=@PSR12",
-        "lint-ci": "php-cs-fixer fix src --dry-run --rules=@PSR2",
+        "lint-ci": "php-cs-fixer fix src --dry-run --rules=@PSR12",
         "analyse": "phpstan analyse --level 4 src"
     },
     "config": {
