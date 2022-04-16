@@ -10,7 +10,7 @@ use XMLWriter;
 
 class XmlTv
 {
-    private const DTD = __DIR__ . '/../spec/xmltv.dtd';
+    private const DTD = __DIR__ . '/xmltv.dtd';
 
     /**
      * Contains element names that are empty according to the DTD.
