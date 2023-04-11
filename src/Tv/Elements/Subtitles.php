@@ -7,24 +7,15 @@ use XmlTv\XmlSerializable;
 
 class Subtitles implements XmlSerializable
 {
-    /**
-     * @var string
-     */
-    public $type;
-
-    /**
-     * @var Language|null
-     */
-    public $language;
+    public ?Language $language = null;
 
     /**
      * Subtitles constructor.
      *
      * @param string $type Legal values are `teletext`, `onscreen` or `deaf-signed`.
      */
-    public function __construct(string $type = '')
+    public function __construct(public string $type = '')
     {
-        $this->type = $type;
     }
 
     public function xmlSerialize(): XmlElement

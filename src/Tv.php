@@ -13,49 +13,26 @@ class Tv implements XmlSerializable
     public const DATE_FORMAT = 'YmdHis O';
 
     /**
-     * @var string
-     */
-    public $date;
-
-    /**
-     * @var string
-     */
-    public $sourceInfoUrl;
-
-    /**
-     * @var string
-     */
-    public $sourceInfoName;
-
-    /**
-     * @var string
-     */
-    public $sourceDataUrl;
-
-    /**
      * @var Channel[]
      */
-    private $channel = [];
+    private array $channel = [];
 
     /**
      * @var Programme[]
      */
-    private $programme = [];
+    private array $programme = [];
 
     /**
      * Tv constructor.
      *
      * @param string $date Should be the date when the listings were originally produced.
-     * @param string $sourceInfoUrl
-     * @param string $sourceInfoName
-     * @param string $sourceDataUrl
      */
-    public function __construct(string $date = '', string $sourceInfoUrl = '', string $sourceInfoName = '', string $sourceDataUrl = '')
-    {
-        $this->date = $date;
-        $this->sourceInfoUrl = $sourceInfoUrl;
-        $this->sourceInfoName = $sourceInfoName;
-        $this->sourceDataUrl = $sourceDataUrl;
+    public function __construct(
+        public string $date = '',
+        public string $sourceInfoUrl = '',
+        public string $sourceInfoName = '',
+        public string $sourceDataUrl = ''
+    ) {
     }
 
     public function addChannel(Channel $channel): void

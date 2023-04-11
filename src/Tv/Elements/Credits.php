@@ -20,52 +20,52 @@ class Credits implements XmlSerializable
     /**
      * @var Director[]
      */
-    public $director = [];
+    public array $director = [];
 
     /**
      * @var Actor[]
      */
-    public $actor = [];
+    public array $actor = [];
 
     /**
      * @var Writer[]
      */
-    public $writer = [];
+    public array $writer = [];
 
     /**
      * @var Adapter[]
      */
-    public $adapter = [];
+    public array $adapter = [];
 
     /**
      * @var Producer[]
      */
-    public $producer = [];
+    public array $producer = [];
 
     /**
      * @var Composer[]
      */
-    public $composer = [];
+    public array $composer = [];
 
     /**
      * @var Editor[]
      */
-    public $editor = [];
+    public array $editor = [];
 
     /**
      * @var Presenter[]
      */
-    public $presenter = [];
+    public array $presenter = [];
 
     /**
      * @var Commentator[]
      */
-    public $commentator = [];
+    public array $commentator = [];
 
     /**
      * @var Guest[]
      */
-    public $guest = [];
+    public array $guest = [];
 
     public function xmlSerialize(): XmlElement
     {

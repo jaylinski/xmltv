@@ -6,5 +6,5 @@ use XmlTv\Tv\LocalizedValue;
 
 class Premiere extends LocalizedValue
 {
-    protected $name = 'premiere';
+    protected string $name = 'premiere';
 }

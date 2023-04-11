@@ -22,10 +22,9 @@ class XmlTv
      *
      * @param Tv   $tv        The Tv object.
      * @param bool $validate  Include the XMLTV DTD (inline) an validate against it.
-     * @return string
      * @throws ValidationException
      */
-    public static function generate(Tv $tv, bool $validate = true)
+    public static function generate(Tv $tv, bool $validate = true): string | false
     {
         libxml_use_internal_errors(true);
 
@@ -45,10 +44,6 @@ class XmlTv
 
     /**
      * Render the serialized XML (recursively).
-     *
-     * @param DOMNode $domNode
-     * @param XmlElement $xmlElement
-     * @return void
      */
     private static function buildDocument(DOMNode $domNode, XmlElement $xmlElement): void
     {
@@ -78,15 +73,13 @@ class XmlTv
      * Returns a DOMDocument with an internal XMLTV DTD subset.
      *
      * This function uses the XMLWriter extension because it can write internal subsets.
-     *
-     * @return DOMDocument
      */
     private static function getDocumentWithDtd(): DOMDocument
     {
         $xmlWriter = new XMLWriter();
         $xmlWriter->openMemory();
         $xmlWriter->startDocument();
-        $xmlWriter->writeDTD('tv', null, null, file_get_contents(XmlTv::DTD));
+        $xmlWriter->writeDTD('tv', null, null, file_get_contents(XmlTv::DTD) ?: null);
         $xmlWriter->writeElement('x'); // DOMDocument::loadXML() will only load the DTD if a root element is present.
         $xmlWriter->endDocument();
 
@@ -99,9 +92,6 @@ class XmlTv
 
     /**
      * Returns `true` if the passed element is empty.
-     *
-     * @param XmlElement $xmlElement
-     * @return bool
      */
     private static function isEmptyElement(XmlElement $xmlElement): bool
     {

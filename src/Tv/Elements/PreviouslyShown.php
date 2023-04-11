@@ -7,20 +7,8 @@ use XmlTv\XmlSerializable;
 
 class PreviouslyShown implements XmlSerializable
 {
-    /**
-     * @var string
-     */
-    public $start;
-
-    /**
-     * @var string
-     */
-    public $channel;
-
-    public function __construct(string $start = '', string $channel = '')
+    public function __construct(public string $start = '', public string $channel = '')
     {
-        $this->start = $start;
-        $this->channel = $channel;
     }
 
     public function xmlSerialize(): XmlElement

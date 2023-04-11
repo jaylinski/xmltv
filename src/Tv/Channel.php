@@ -11,34 +11,26 @@ use XmlTv\XmlSerializable;
 class Channel implements XmlSerializable
 {
     /**
-     * @var string
-     */
-    public $id;
-
-    /**
      * @var DisplayName[]
      */
-    private $displayName = [];
+    private array $displayName = [];
 
     /**
      * @var Icon[]
      */
-    private $icon = [];
+    private array $icon = [];
 
     /**
      * @var Url[]
      */
-    private $url = [];
+    private array $url = [];
 
-    public function __construct(string $id)
+    public function __construct(public string $id)
     {
-        $this->id = $id;
     }
 
     /**
      * Add a display name.
-     *
-     * @param DisplayName $displayName
      */
     public function addDisplayName(DisplayName $displayName): void
     {
@@ -57,8 +49,6 @@ class Channel implements XmlSerializable
 
     /**
      * Add an icon.
-     *
-     * @param Icon $icon
      */
     public function addIcon(Icon $icon): void
     {
@@ -67,8 +57,6 @@ class Channel implements XmlSerializable
 
     /**
      * Add a url.
-     *
-     * @param Url $url
      */
     public function addUrl(Url $url): void
     {

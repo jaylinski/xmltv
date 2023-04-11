@@ -32,195 +32,109 @@ use XmlTv\XmlSerializable;
 class Programme implements XmlSerializable
 {
     /**
-     * @var string
-     */
-    public $channel;
-
-    /**
-     * @var string
-     */
-    public $start;
-
-    /**
-     * @var string
-     */
-    public $stop;
-
-    /**
-     * @var string
-     */
-    public $pdcStart;
-
-    /**
-     * @var string
-     */
-    public $vpsStart;
-
-    /**
-     * @var string
-     */
-    public $showview;
-
-    /**
-     * @var string
-     */
-    public $videoplus;
-
-    /**
-     * @var string Legal values are `0` or `1`.
-     */
-    public $clumpidx;
-
-    /**
      * @var string A programme specific identifier for catchup URLs. Not part of the XMLTV specification.
      * @see https://github.com/kodi-pvr/pvr.iptvsimple/tree/7.0.0-Matrix#supported-m3u-and-xmltv-elements
      */
-    public $catchupId = '';
+    public string $catchupId = '';
 
     /**
      * @var Title[]
      */
-    private $title = [];
+    private array $title = [];
 
     /**
      * @var SubTitle[]
      */
-    private $subTitle = [];
+    private array $subTitle = [];
 
     /**
      * @var Desc[]
      */
-    private $desc = [];
+    private array $desc = [];
 
     /**
      * @var Credits[]
      */
-    private $credits = [];
+    private array $credits = [];
 
-    /**
-     * @var Date
-     */
-    public $date;
+    public ?Date $date = null;
 
     /**
      * @var Category[]
      */
-    private $category = [];
+    private array $category = [];
 
     /**
      * @var Keyword[]
      */
-    private $keyword = [];
+    private array $keyword = [];
 
-    /**
-     * @var Language
-     */
-    public $language;
-
-    /**
-     * @var OrigLanguage
-     */
-    public $origLanguage;
-
-    /**
-     * @var Length
-     */
-    public $length;
+    public ?Language $language = null;
+    public ?OrigLanguage $origLanguage = null;
+    public ?Length $length = null;
 
     /**
      * @var Icon[]
      */
-    private $icon = [];
+    private array $icon = [];
 
     /**
      * @var Url[]
      */
-    private $url = [];
+    private array $url = [];
 
     /**
      * @var Country[]
      */
-    private $country = [];
+    private array $country = [];
 
     /**
      * @var EpisodeNum[]
      */
-    private $episodeNum = [];
+    private array $episodeNum = [];
 
-    /**
-     * @var Video
-     */
-    public $video;
-
-    /**
-     * @var Audio
-     */
-    public $audio;
-
-    /**
-     * @var PreviouslyShown
-     */
-    public $previouslyShown;
-
-    /**
-     * @var Premiere
-     */
-    public $premiere;
-
-    /**
-     * @var LastChance
-     */
-    public $lastChance;
-
-    /**
-     * @var NewProgramme
-     */
-    public $new;
+    public ?Video $video = null;
+    public ?Audio $audio = null;
+    public ?PreviouslyShown $previouslyShown = null;
+    public ?Premiere $premiere = null;
+    public ?LastChance $lastChance = null;
+    public ?NewProgramme $new = null;
 
     /**
      * @var Subtitles[]
      */
-    private $subtitles = [];
+    private array $subtitles = [];
 
     /**
      * @var Rating[]
      */
-    private $rating = [];
+    private array $rating = [];
 
     /**
      * @var StarRating[]
      */
-    private $starRating = [];
+    private array $starRating = [];
 
     /**
      * @var Review[]
      */
-    private $review = [];
+    private array $review = [];
 
     public function __construct(
-        string $channel,
-        string $start,
-        string $stop = '',
-        string $pdcStart = '',
-        string $vpsStart = '',
-        string $showview = '',
-        string $videoplus = '',
-        string $clumpidx = ''
+        public string $channel,
+        public string $start,
+        public string $stop = '',
+        public string $pdcStart = '',
+        public string $vpsStart = '',
+        public string $showview = '',
+        public string $videoplus = '',
+        /** @var string Legal values are `0` or `1`. */
+        public string $clumpidx = ''
     ) {
-        $this->channel = $channel;
-        $this->start = $start;
-        $this->stop = $stop;
-        $this->pdcStart = $pdcStart;
-        $this->vpsStart = $vpsStart;
-        $this->showview = $showview;
-        $this->videoplus = $videoplus;
-        $this->clumpidx = $clumpidx;
     }
 
     /**
      * Add a title.
-     *
-     * @param Title $title
      */
     public function addTitle(Title $title): void
     {
@@ -239,8 +153,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add a category.
-     *
-     * @param SubTitle $subTitle
      */
     public function addSubTitle(SubTitle $subTitle): void
     {
@@ -259,8 +171,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add a description.
-     *
-     * @param Desc $desc
      */
     public function addDescription(Desc $desc): void
     {
@@ -279,8 +189,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add credits.
-     *
-     * @param Credits $credits
      */
     public function addCredits(Credits $credits): void
     {
@@ -299,8 +207,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add a category.
-     *
-     * @param Category $category
      */
     public function addCategory(Category $category): void
     {
@@ -319,8 +225,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add a keyword.
-     *
-     * @param Keyword $keyword
      */
     public function addKeyword(Keyword $keyword): void
     {
@@ -339,8 +243,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add an icon.
-     *
-     * @param Icon $icon
      */
     public function addIcon(Icon $icon): void
     {
@@ -359,8 +261,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add a url.
-     *
-     * @param Url $url
      */
     public function addUrl(Url $url): void
     {
@@ -379,8 +279,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add a country.
-     *
-     * @param Country $country
      */
     public function addCountry(Country $country): void
     {
@@ -399,8 +297,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add a episode-num.
-     *
-     * @param EpisodeNum $episodeNum
      */
     public function addEpisodeNum(EpisodeNum $episodeNum): void
     {
@@ -419,8 +315,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add subtitles.
-     *
-     * @param Subtitles $subtitles
      */
     public function addSubtitles(Subtitles $subtitles): void
     {
@@ -439,8 +333,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add a rating.
-     *
-     * @param Rating $rating
      */
     public function addRating(Rating $rating): void
     {
@@ -458,8 +350,6 @@ class Programme implements XmlSerializable
     }
     /**
      * Add a star-rating.
-     *
-     * @param StarRating $rating
      */
     public function addStarRating(StarRating $rating): void
     {
@@ -478,8 +368,6 @@ class Programme implements XmlSerializable
 
     /**
      * Add a review.
-     *
-     * @param Review $review
      */
     public function addReview(Review $review): void
     {

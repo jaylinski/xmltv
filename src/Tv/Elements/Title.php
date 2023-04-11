@@ -6,5 +6,5 @@ use XmlTv\Tv\LocalizedValue;
 
 class Title extends LocalizedValue
 {
-    protected $name = 'title';
+    protected string $name = 'title';
 }

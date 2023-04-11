@@ -11,16 +11,16 @@
         }
     ],
     "require": {
-        "php": ">=7.3",
+        "php": ">=8.0",
         "ext-dom": "*",
         "ext-libxml": "*",
         "ext-xmlwriter": "*"
     },
     "require-dev": {
-        "friends-of-phpspec/phpspec-code-coverage": "^6.1",
-        "friendsofphp/php-cs-fixer": "^3.4",
-        "phpspec/phpspec": "^7.0",
-        "phpstan/phpstan": "^1.2"
+        "friends-of-phpspec/phpspec-code-coverage": "^6.3",
+        "friendsofphp/php-cs-fixer": "^3.16",
+        "phpspec/phpspec": "^7.3",
+        "phpstan/phpstan": "^1.10"
     },
     "autoload": {
         "psr-4": {
@@ -32,11 +32,11 @@
         "test-ci": "phpspec run --no-interaction --verbose",
         "lint": "php-cs-fixer fix src --rules=@PSR12",
         "lint-ci": "php-cs-fixer fix src --dry-run --rules=@PSR12",
-        "analyse": "phpstan analyse --level 4 src"
+        "analyse": "phpstan analyse --level 7 src"
     },
     "config": {
         "platform": {
-            "php": "7.3"
+            "php": "8.0.28"
         },
         "sort-packages": true
     }

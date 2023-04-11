@@ -7,14 +7,8 @@ use XmlTv\XmlSerializable;
 
 class Adapter implements XmlSerializable
 {
-    /**
-     * @var string
-     */
-    public $value;
-
-    public function __construct(string $value)
+    public function __construct(public string $value)
     {
-        $this->value = $value;
     }
 
     public function xmlSerialize(): XmlElement
