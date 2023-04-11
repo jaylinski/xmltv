@@ -7,20 +7,8 @@ use XmlTv\XmlSerializable;
 
 class Actor implements XmlSerializable
 {
-    /**
-     * @var string
-     */
-    public $value;
-
-    /**
-     * @var string
-     */
-    public $role;
-
-    public function __construct(string $value, string $role = '')
+    public function __construct(public string $value, public string $role = '')
     {
-        $this->value = $value;
-        $this->role = $role;
     }
 
     public function xmlSerialize(): XmlElement

@@ -6,5 +6,5 @@ use XmlTv\Tv\LocalizedValue;
 
 class LastChance extends LocalizedValue
 {
-    protected $name = 'last-chance';
+    protected string $name = 'last-chance';
 }

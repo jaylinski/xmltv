@@ -7,25 +7,10 @@ use XmlTv\XmlSerializable;
 
 abstract class LocalizedValue implements XmlSerializable
 {
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name = '';
 
-    /**
-     * @var string
-     */
-    public $value;
-
-    /**
-     * @var string
-     */
-    public $lang;
-
-    public function __construct(string $value, string $lang = '')
+    public function __construct(public string $value, public string $lang = '')
     {
-        $this->value = $value;
-        $this->lang = $lang;
     }
 
     public function xmlSerialize(): XmlElement

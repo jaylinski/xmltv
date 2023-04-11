@@ -8,29 +8,14 @@ use XmlTv\XmlSerializable;
 class Rating implements XmlSerializable
 {
     /**
-     * @var string
-     */
-    public $value;
-
-    /**
-     * @var string
-     */
-    public $system;
-
-    /**
      * @var Icon[]
      */
-    private $icon = [];
+    private array $icon = [];
 
-    public function __construct(string $value, string $system = '')
+    public function __construct(public string $value, public string $system = '')
     {
-        $this->value = $value;
-        $this->system = $system;
     }
 
-    /**
-     * @param Icon $icon
-     */
     public function addIcon(Icon $icon): void
     {
         array_push($this->icon, $icon);

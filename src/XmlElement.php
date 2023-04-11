@@ -8,29 +8,17 @@ namespace XmlTv;
 class XmlElement implements XmlSerializable
 {
     /**
-     * @var string
+     * @var array<string, string>
      */
-    private $name;
-
-    /**
-     * @var string|null
-     */
-    private $value;
-
-    /**
-     * @var string[]
-     */
-    private $attributes = [];
+    private array $attributes = [];
 
     /**
      * @var XmlElement[]
      */
-    private $children = [];
+    private array $children = [];
 
-    public function __construct(string $name, string $value = null)
+    public function __construct(private string $name, private ?string $value = null)
     {
-        $this->name = $name;
-        $this->value = $value;
     }
 
     public function getName(): string
@@ -44,7 +32,7 @@ class XmlElement implements XmlSerializable
     }
 
     /**
-     * @return string[]
+     * @return array<string, string>
      */
     public function getAttributes(): array
     {
@@ -71,10 +59,6 @@ class XmlElement implements XmlSerializable
 
     /**
      * Add an attribute.
-     *
-     * @param string $name
-     * @param string $value
-     * @return XmlElement
      */
     public function withAttribute(string $name, string $value): XmlElement
     {
@@ -87,9 +71,6 @@ class XmlElement implements XmlSerializable
 
     /**
      * Add a child.
-     *
-     * @param ?XmlSerializable $child
-     * @return XmlElement
      */
     public function withChild(?XmlSerializable $child): XmlElement
     {
@@ -104,7 +85,6 @@ class XmlElement implements XmlSerializable
      * Add children.
      *
      * @param XmlSerializable[] $children
-     * @return XmlElement
      */
     public function withChildren(array $children): XmlElement
     {

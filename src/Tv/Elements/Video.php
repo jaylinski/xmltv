@@ -8,26 +8,6 @@ use XmlTv\XmlSerializable;
 class Video implements XmlSerializable
 {
     /**
-     * @var string
-     */
-    public $present;
-
-    /**
-     * @var string
-     */
-    public $colour;
-
-    /**
-     * @var string
-     */
-    public $aspect;
-
-    /**
-     * @var string
-     */
-    public $quality;
-
-    /**
      * Video constructor.
      *
      * @param string $present Whether this programme has a picture. Legal values are `yes` or `no`.
@@ -35,12 +15,12 @@ class Video implements XmlSerializable
      * @param string $aspect The horizontal:vertical aspect ratio, eg `4:3` or `16:9`.
      * @param string $quality Information on the quality, eg `HDTV`, `800x600`.
      */
-    public function __construct(string $present = '', string $colour = '', string $aspect = '', string $quality = '')
-    {
-        $this->present = $present;
-        $this->colour = $colour;
-        $this->aspect = $aspect;
-        $this->quality = $quality;
+    public function __construct(
+        public string $present = '',
+        public string $colour = '',
+        public string $aspect = '',
+        public string $quality = ''
+    ) {
     }
 
     public function xmlSerialize(): XmlElement

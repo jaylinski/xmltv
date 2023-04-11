@@ -7,20 +7,8 @@ use XmlTv\XmlSerializable;
 
 class Language implements XmlSerializable
 {
-    /**
-     * @var string
-     */
-    public $value;
-
-    /**
-     * @var string
-     */
-    public $lang;
-
-    public function __construct(string $value, string $lang = '')
+    public function __construct(public string $value, public string $lang = '')
     {
-        $this->value = $value;
-        $this->lang = $lang;
     }
 
     public function xmlSerialize(): XmlElement
