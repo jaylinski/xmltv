@@ -64,8 +64,8 @@ class XmlTv
             foreach ($xmlElement->getChildren() as $child) {
                 self::buildDocument($node, $child);
             }
-        } else {
-            $node->textContent = $xmlElement->getValue() ?? '';
+        } elseif ($textContent = $xmlElement->getValue()) {
+            $node->textContent = $textContent;
         }
     }
 
