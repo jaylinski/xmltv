@@ -37,7 +37,8 @@ class XmlTv
             return $domDocument->saveXML();
         }
 
-        $errorMessage = libxml_get_last_error() instanceof \LibXMLError ? libxml_get_last_error()->message : 'error';
+        $libXmlError = libxml_get_last_error();
+        $errorMessage = $libXmlError instanceof \LibXMLError ? $libXmlError->message : 'error';
 
         throw new ValidationException('DTD validation failed: ' . $errorMessage);
     }

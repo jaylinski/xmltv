@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.1",
         "ext-dom": "*",
         "ext-libxml": "*",
         "ext-xmlwriter": "*"
@@ -20,7 +20,7 @@
         "friends-of-phpspec/phpspec-code-coverage": "^6.3",
         "friendsofphp/php-cs-fixer": "^3.16",
         "phpspec/phpspec": "^7.3",
-        "phpstan/phpstan": "^1.10"
+        "phpstan/phpstan": "^2.1"
     },
     "autoload": {
         "psr-4": {
@@ -36,7 +36,7 @@
     },
     "config": {
         "platform": {
-            "php": "8.0.28"
+            "php": "8.1.1"
         },
         "sort-packages": true
     }
