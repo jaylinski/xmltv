@@ -59,14 +59,14 @@ class XmlTv
             foreach ($xmlElement->getAttributes() as $attribute => $value) {
                 $node->setAttribute($attribute, $value);
             }
-        }
 
-        if ($xmlElement->hasChildren()) {
-            foreach ($xmlElement->getChildren() as $child) {
-                self::buildDocument($node, $child);
+            if ($xmlElement->hasChildren()) {
+                foreach ($xmlElement->getChildren() as $child) {
+                    self::buildDocument($node, $child);
+                }
+            } elseif ($textContent = $xmlElement->getValue()) {
+                $node->textContent = $textContent;
             }
-        } elseif ($textContent = $xmlElement->getValue()) {
-            $node->textContent = $textContent;
         }
     }
 
